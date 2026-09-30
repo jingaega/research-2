@@ -157,3 +157,18 @@ platform and one region.
 - `scripts/18_timing.py`: **permuted labels, dev only, no metric computed.** LR + inner CV takes 62 s
   per 25 folds on the largest task; with graph smoothing 62.5 s; one GCN fold (150 epochs) 89 s.
 - PLAN.md written. **Waiting for approval before any training or evaluation.**
+
+## 2026-09-30 — Literature review expanded at the user's request (≥ 20 papers)
+
+- 19 further searches (PubMed E-utilities, arXiv, Europe PMC). The queries and returned PMIDs are logged in
+  `results/literature_queries.json`, and the abstracts are saved in `data/lit/`.
+- Two searches returned the wrong paper (Iwamoto → Munakata 2005; Varma & Simon → Tsamardinos 2018). Both
+  were logged and retried by PMID.
+- Total now **39 sources read** (15 with full text or quoted passages, 24 abstracts). Pro-graph: 5 (+1
+  design); skeptical: 6.
+- **Plan changes (PLAN.md §12):** BBC-CV bias correction for the selected configurations; reserve V9
+  cell-type-composition classifier; stated limitations (medication, illness stage, isoforms); the
+  GSE21138 provenance caveat (the cohort key "Victoria" is unverified); three paper-vs-GEO conflicts
+  recorded.
+- The class list, test split and audit are **unchanged**; nothing in the literature alters them.
+- Still no modeling. Awaiting approval.

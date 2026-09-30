@@ -308,3 +308,41 @@ Python, scikit-learn and R/limma/frma versions, and the fold sizes.
 6. **Nadeau–Bengio with macro-F1.** The test is defined for a loss averaged over test points. Macro-F1
    is not such an average, so the corrected test is an approximation here. I will use it as the
    protocol requires, and I also report the fold-level AUC differences under the same test.
+
+## 12. Changes from the expanded literature review (39 sources read; see LITERATURE.md)
+
+1. **Optimism of the selected configuration (Varma & Simon 2006; Tsamardinos et al. 2018).** The dev-CV
+   score of whichever configuration is chosen as "best" among ≤ 12 is optimistically biased even with
+   nested tuning. I will additionally report the **bootstrap bias-corrected CV (BBC-CV)** estimate for
+   the two selected configurations. It is computed from the stored out-of-fold predictions of all
+   configurations, with no extra fits. The locked test set stays the only unbiased number.
+2. **The graph variants use the SGC form (Wu et al. 2019):** fixed low-pass filter over the gene graph,
+   then a linear classifier. The graph is then the only difference from the no-structure baseline.
+   Equal tuning and repeated identical splits for all models follow Shchur et al. 2018 and Errica et al.
+   2020.
+3. **Cell-type composition (Hagenauer et al. 2018; Ramaker et al. 2017)** is the dominant axis of
+   variation in these datasets. It shifts with diagnosis (neuron down, astrocyte up in SCZ/BD) but also
+   with agonal hypoxia and dissection. Added as a **reserve variant candidate (V9): a classifier on
+   cell-type marker scores only**, to measure how much of any signal is composition. It will be
+   pre-registered in LOG.md before running, and counts against the budget.
+4. **Per-batch standardisation stays the baseline adjustment (Luo et al. 2010).** Mean-centering and
+   standardisation were equal to or better than no correction in 75–79% of MAQC-II cross-batch
+   prediction cases. They are not always beneficial, which is what V5 (ComBat; Johnson et al. 2007)
+   tests.
+5. **Stated limitations, from the dataset papers themselves:**
+   - Medication effects cannot be separated from disease (Iwamoto et al. 2005 attribute mitochondrial
+     down-regulation mainly to medication).
+   - SCZ signal depends on illness stage (Narayan et al. 2008).
+   - Gene-level microarray features miss isoform-level effects, where the largest effects lie (Gandal
+     et al. 2018b).
+6. **Provenance caveat.** GEO does not name the brain bank for GSE21138, and I could not retrieve the
+   paper's full text. The cohort key "Victoria" is a label from background knowledge, not a verified
+   fact. The identity audit's negative controls assumed this cohort shares no donors with Pritzker. The
+   highest negative-control hit (z = 5.08, which set the match threshold) was a GSE21138–GSE92538 pair.
+   If that pair were a real shared donor, the threshold would be too conservative (fewer duplicates
+   called), not too lax, and neither cohort is split across folds with the other (they are different
+   cohorts). The pair is listed in the audit for transparency.
+7. **Paper–GEO conflicts** (reported per protocol, in LITERATURE.md):
+   - Gandal 2018's list contains non-brain GSE11223.
+   - Chang 2014's subject counts differ from GEO's for GSE54568/GSE54572.
+   - Lanz 2019's hippocampal results rest on arrays our audit finds mislabelled.

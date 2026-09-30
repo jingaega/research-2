@@ -1,0 +1,121 @@
+[
+ {
+  "query": "Johnson Li Rabinovic 2007 Adjusting batch effects in microarray expression data using empirical Bayes methods",
+  "pmids": []
+ },
+ {
+  "query": "Luo 2010 comparison of batch effect removal methods for enhancement of prediction performance using MAQC-II microarray gene expression data",
+  "pmids": [
+   "20676067"
+  ]
+ },
+ {
+  "query": "McCall Bolstad Irizarry 2010 Frozen robust multiarray analysis fRMA",
+  "pmids": [
+   "20097884"
+  ]
+ },
+ {
+  "query": "Leek 2010 Tackling the widespread and critical impact of batch effects in high-throughput data",
+  "pmids": [
+   "20838408"
+  ]
+ },
+ {
+  "query": "Westra 2011 MixupMapper resolving sample mix-ups eQTL",
+  "pmids": []
+ },
+ {
+  "query": "Adjusting batch effects in microarray expression data using empirical Bayes methods[Title]",
+  "pmids": [
+   "16632515"
+  ]
+ },
+ {
+  "query": "MixupMapper[Title/Abstract]",
+  "pmids": [
+   "21653519"
+  ]
+ },
+ {
+  "query": "Iwamoto Bundo Kato mitochondria-related genes postmortem brains bipolar disorder schizophrenia 2005",
+  "pmids": [
+   "15737668",
+   "15563509"
+  ]
+ },
+ {
+  "query": "Chen C 2013 two gene co-expression modules differentiate psychotics and controls",
+  "pmids": [
+   "23147385"
+  ]
+ },
+ {
+  "query": "Maycox 2009 analysis of gene expression in two large schizophrenia cohorts nerve terminal function",
+  "pmids": [
+   "19255580"
+  ]
+ },
+ {
+  "query": "Narayan 2008 molecular profiles of schizophrenia in the CNS at different stages of illness",
+  "pmids": [
+   "18778695"
+  ]
+ },
+ {
+  "query": "Hagenauer 2018 inference of cell type content from human brain transcriptomic datasets",
+  "pmids": [
+   "30016334"
+  ]
+ },
+ {
+  "query": "15563509[uid]",
+  "pmids": [
+   "15563509"
+  ]
+ },
+ {
+  "query": "Ramaker 2017 post-mortem molecular profiling of three psychiatric disorders Genome Medicine",
+  "pmids": [
+   "28754123"
+  ]
+ },
+ {
+  "query": "Gandal 2018 transcriptome-wide isoform-level dysregulation in ASD, schizophrenia, and bipolar disorder",
+  "pmids": [
+   "30545856"
+  ]
+ },
+ {
+  "query": "Varma Simon 2006 bias in error estimation when using cross-validation for model selection",
+  "pmids": [
+   "30393425",
+   "23845182",
+   "16504092"
+  ]
+ },
+ {
+  "query": "Dietterich 1998 approximate statistical tests for comparing supervised classification learning algorithms",
+  "pmids": [
+   "9744903"
+  ]
+ },
+ {
+  "query": "Kapoor Narayanan 2023 leakage and the reproducibility crisis in machine-learning-based science",
+  "pmids": [
+   "37720327"
+  ]
+ },
+ {
+  "query": "Wang 2021 MOGONET integrates multi-omics data using graph convolutional networks",
+  "pmids": [
+   "34103512"
+  ]
+ },
+ {
+  "query": "16504092[uid]",
+  "pmids": [
+   "16504092"
+  ]
+ }
+]
