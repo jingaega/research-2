@@ -1,0 +1,191 @@
+{
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "scikit_learn": "1.9.1",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "limma": "3.58.1",
+  "frma": "1.54.0",
+  "affy": "1.80.0"
+ },
+ "rule": "identical sex & age, |dPMI|<=0.5h, |dpH|<=0.02; null = 100 age permutations of series B",
+ "pairs": {
+  "GSE17612~GSE21138": {
+   "n_a": 49,
+   "n_b": 59,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE17612~GSE21935": {
+   "n_a": 49,
+   "n_b": 42,
+   "matches": 35,
+   "null_mean": 1.99,
+   "null_max": 6,
+   "dx_agree": 35
+  },
+  "GSE17612~GSE35978": {
+   "n_a": 49,
+   "n_b": 157,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE17612~GSE5388": {
+   "n_a": 49,
+   "n_b": 61,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE17612~GSE53987": {
+   "n_a": 49,
+   "n_b": 75,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE17612~GSE92538": {
+   "n_a": 49,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21138~GSE21935": {
+   "n_a": 59,
+   "n_b": 42,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21138~GSE35978": {
+   "n_a": 59,
+   "n_b": 157,
+   "matches": 0,
+   "null_mean": 0.03,
+   "null_max": 1,
+   "dx_agree": 0
+  },
+  "GSE21138~GSE5388": {
+   "n_a": 59,
+   "n_b": 61,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21138~GSE53987": {
+   "n_a": 59,
+   "n_b": 75,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21138~GSE92538": {
+   "n_a": 59,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21935~GSE35978": {
+   "n_a": 42,
+   "n_b": 157,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21935~GSE5388": {
+   "n_a": 42,
+   "n_b": 61,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21935~GSE53987": {
+   "n_a": 42,
+   "n_b": 75,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE21935~GSE92538": {
+   "n_a": 42,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.0,
+   "null_max": 0,
+   "dx_agree": 0
+  },
+  "GSE35978~GSE5388": {
+   "n_a": 157,
+   "n_b": 61,
+   "matches": 10,
+   "null_mean": 1.93,
+   "null_max": 5,
+   "dx_agree": 10
+  },
+  "GSE35978~GSE53987": {
+   "n_a": 157,
+   "n_b": 75,
+   "matches": 0,
+   "null_mean": 0.2,
+   "null_max": 2,
+   "dx_agree": 0
+  },
+  "GSE35978~GSE92538": {
+   "n_a": 157,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.25,
+   "null_max": 3,
+   "dx_agree": 0
+  },
+  "GSE5388~GSE53987": {
+   "n_a": 61,
+   "n_b": 75,
+   "matches": 0,
+   "null_mean": 0.02,
+   "null_max": 1,
+   "dx_agree": 0
+  },
+  "GSE5388~GSE92538": {
+   "n_a": 61,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.14,
+   "null_max": 1,
+   "dx_agree": 0
+  },
+  "GSE53987~GSE92538": {
+   "n_a": 75,
+   "n_b": 158,
+   "matches": 0,
+   "null_mean": 0.17,
+   "null_max": 1,
+   "dx_agree": 0
+  },
+  "GSE17612~GSE21935_id_strings": {
+   "shared_ids": 36,
+   "sex_and_age_agree": 35,
+   "n_GSE17612": 51,
+   "n_GSE21935": 42
+  }
+ }
+}

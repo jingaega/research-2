@@ -1,0 +1,12 @@
+# Large / reproducible data (regenerate with scripts/01..10)
+data/raw/
+data/frma/
+data/matrix/
+data/qc/
+data/expr/
+data/geo_meta/
+data/knowledge/
+data/annot/*.gz
+data/lit/
+*.tmp
+__pycache__/

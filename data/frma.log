@@ -1,0 +1,31 @@
+GSE54567 CELs: 28 chip types: HG-U133_Plus_2 28 
+
+   HG-U133_Plus_2 1 - 28 
+  wrote data/frma/GSE54567__HG-U133_Plus_2.tsv.gz 54675 28 
+GSE54568 CELs: 30 chip types: HG-U133_Plus_2 30 
+   HG-U133_Plus_2 1 - 30 
+  wrote data/frma/GSE54568__HG-U133_Plus_2.tsv.gz 54675 30 
+GSE54571 CELs: 26 chip types: HG-U133_Plus_2 26 
+   HG-U133_Plus_2 1 - 26 
+  wrote data/frma/GSE54571__HG-U133_Plus_2.tsv.gz 54675 26 
+GSE54572 CELs: 24 chip types: HG-U133_Plus_2 24 
+   HG-U133_Plus_2 1 - 24 
+  wrote data/frma/GSE54572__HG-U133_Plus_2.tsv.gz 54675 24 
+GSE21138 CELs: 59 chip types: HG-U133_Plus_2 59 
+   HG-U133_Plus_2 1 - 40 
+   HG-U133_Plus_2 41 - 59 
+  wrote data/frma/GSE21138__HG-U133_Plus_2.tsv.gz 54675 59 
+GSE17612 CELs: 51 chip types: HG-U133_Plus_2 51 
+   HG-U133_Plus_2 1 - 40 
+   HG-U133_Plus_2 41 - 51 
+  wrote data/frma/GSE17612__HG-U133_Plus_2.tsv.gz 54675 51 
+GSE12649 CELs: 102 chip types: HG-U133A 102 
+
+
+Attaching package: 'hgu133acdf'
+
+The following objects are masked from 'package:hgu133plus2cdf':
+
+    i2xy, xy2i
+
+   HG-U133A 1 - 40 
