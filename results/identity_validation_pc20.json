@@ -1,0 +1,85 @@
+{
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "scikit_learn": "1.9.1",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "limma": "3.58.1",
+  "frma": "1.54.0",
+  "affy": "1.80.0"
+ },
+ "n_identity_genes": 300,
+ "n_common_genes": 11972,
+ "units": {
+  "GSE12649__HG-U133A|PFC_BA46": 102,
+  "GSE17612__HG-U133_Plus_2|PFC_BA10": 51,
+  "GSE21138__HG-U133_Plus_2|PFC_BA46": 59,
+  "GSE35978__HuGene-1_0-st-v1|CB": 144,
+  "GSE35978__HuGene-1_0-st-v1|PARIETAL": 161,
+  "GSE53987__HG-U133_Plus_2|HPC": 68,
+  "GSE53987__HG-U133_Plus_2|PFC_BA46": 68,
+  "GSE53987__HG-U133_Plus_2|STR": 69,
+  "GSE54567__HG-U133_Plus_2|PFC_BA9": 28,
+  "GSE54568__HG-U133_Plus_2|PFC_BA9": 30,
+  "GSE54571__HG-U133_Plus_2|ACC_BA25": 26,
+  "GSE54572__HG-U133_Plus_2|ACC_BA25": 24,
+  "GSE92538__HG-U133A|PFC_DLPFC": 235,
+  "GSE92538__HG-U133_Plus_2|PFC_DLPFC": 128
+ },
+ "calibration_pairs": {
+  "sibille_BA9_vs_BA25": 50,
+  "GSE53987_regions": 188,
+  "GSE92538_replicate_arrays": 46
+ },
+ "calibration_recovery": {
+  "sibille_M": {
+   "known": 24,
+   "called": 0,
+   "tp": 0
+  },
+  "GSE53987_PFC_HPC": {
+   "known": 63,
+   "called": 54,
+   "tp": 48
+  }
+ },
+ "n_pc_removed": 20,
+ "validation": {
+  "n_known_pairs": 123,
+  "n_mutual_best": 101,
+  "z>=3": {
+   "called": 87,
+   "true_positive": 74,
+   "false_positive": 13,
+   "sensitivity": 0.602
+  },
+  "z>=4": {
+   "called": 43,
+   "true_positive": 38,
+   "false_positive": 5,
+   "sensitivity": 0.309
+  },
+  "z>=5": {
+   "called": 10,
+   "true_positive": 10,
+   "false_positive": 0,
+   "sensitivity": 0.081
+  },
+  "z>=6": {
+   "called": 0,
+   "true_positive": 0,
+   "false_positive": 0,
+   "sensitivity": 0.0
+  },
+  "z>=8": {
+   "called": 0,
+   "true_positive": 0,
+   "false_positive": 0,
+   "sensitivity": 0.0
+  }
+ },
+ "z_match": 5.0
+}

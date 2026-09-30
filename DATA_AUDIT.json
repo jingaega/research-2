@@ -1,0 +1,1770 @@
+{
+ "created": "2026-09-30",
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "scikit_learn": "1.9.1",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "limma": "3.58.1",
+  "frma": "1.54.0",
+  "affy": "1.80.0"
+ },
+ "scope": "psychiatric postmortem brain microarrays (NCBI GEO); RNA-seq out of scope",
+ "candidate_list_status": "the 13 candidate accessions equal the accession list in Gandal et al. 2018 (Science) acknowledgements; GSE11223 is not brain tissue",
+ "series": {
+  "GSE11223": {
+   "title": "Colon biopsies from UC patients and healthy controls",
+   "platforms": [
+    "GPL1708"
+   ],
+   "regions": [],
+   "n_samples_total": 202,
+   "n_tissue_samples": 0,
+   "n_non_tissue_samples": {
+    "non_brain": 202
+   },
+   "n_donors_within_series": null,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {},
+   "diagnosis_counts_donors": {},
+   "brain_bank": "not brain",
+   "decision": "EXCLUDED: colon biopsies (ulcerative colitis), not brain, not psychiatric"
+  },
+  "GSE12649": {
+   "title": "Gene expression from human prefrontal cortex (BA46)",
+   "platforms": [
+    "GPL96"
+   ],
+   "regions": [
+    "PFC_BA46"
+   ],
+   "n_samples_total": 102,
+   "n_tissue_samples": 102,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 102,
+   "donor_id_source": "number in title (BA46-N)",
+   "diagnosis_counts_samples": {
+    "SCZ": 35,
+    "CTL": 34,
+    "BD": 33
+   },
+   "diagnosis_counts_donors": {
+    "BD": 33,
+    "CTL": 34,
+    "SCZ": 35
+   },
+   "brain_bank": "Stanley",
+   "decision": "AUDIT ONLY: Stanley Array collection; 80/102 donors matched to GSE35978; rest presumed undetected duplicates"
+  },
+  "GSE17612": {
+   "title": "Comparison of post-mortem tissue from brain BA10 region between schizophrenic and control patients.",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "PFC_BA10"
+   ],
+   "n_samples_total": 51,
+   "n_tissue_samples": 51,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 51,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "SCZ": 28,
+    "CTL": 23
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 23,
+    "SCZ": 28
+   },
+   "brain_bank": "CharingCross",
+   "decision": "INCLUDED"
+  },
+  "GSE21138": {
+   "title": "Gene Expression Profiles in BA46 of Subjects with Schizophrenia and Matched Controls",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "PFC_BA46"
+   ],
+   "n_samples_total": 59,
+   "n_tissue_samples": 59,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 59,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "SCZ": 30,
+    "CTL": 29
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 29,
+    "SCZ": 30
+   },
+   "brain_bank": "Victoria",
+   "decision": "INCLUDED"
+  },
+  "GSE21935": {
+   "title": "Comparison of post-mortem tissue from Brodman Brain BA22 region between schizophrenic and control patients",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "STG_BA22"
+   ],
+   "n_samples_total": 42,
+   "n_tissue_samples": 42,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 42,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "SCZ": 23,
+    "CTL": 19
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 19,
+    "SCZ": 23
+   },
+   "brain_bank": "CharingCross",
+   "decision": "SCREENED, NOT ADDED (same Charing Cross cohort as GSE17612, BA22)"
+  },
+  "GSE28475": {
+   "title": "Genome-wide Expression Assay Comparison Across Frozen and Fixed Postmortem Brain Tissue Samples",
+   "platforms": [
+    "GPL13388",
+    "GPL6883"
+   ],
+   "regions": [
+    "brain_unspecified"
+   ],
+   "n_samples_total": 143,
+   "n_tissue_samples": 87,
+   "n_non_tissue_samples": {
+    "reference_rna": 30,
+    "fixed_tissue": 26
+   },
+   "n_donors_within_series": 74,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "ASD": 47,
+    "CTL": 40
+   },
+   "diagnosis_counts_donors": {
+    "ASD": 38,
+    "CTL": 36
+   },
+   "brain_bank": "ASD (methods study)",
+   "decision": "EXCLUDED from modeling: ASD methods study (frozen/fixed, DASL/IVT, reference RNA); ASD has < 3 cohorts"
+  },
+  "GSE28521": {
+   "title": "Transcriptomic Analysis of Autism Brain Reveals Convergent Molecular Pathology [array data]",
+   "platforms": [
+    "GPL6883"
+   ],
+   "regions": [
+    "CB",
+    "FC",
+    "TC"
+   ],
+   "n_samples_total": 79,
+   "n_tissue_samples": 79,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 33,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 40,
+    "ASD": 39
+   },
+   "diagnosis_counts_donors": {
+    "ASD": 16,
+    "CTL": 17
+   },
+   "brain_bank": "Autism Tissue Program (ASD)",
+   "decision": "EXCLUDED from modeling: ASD has < 3 cohorts (GSE28521, GSE28475 only)"
+  },
+  "GSE29555": {
+   "title": "Gene co-expression networks in human brain predict chromatin modifications in alcohol abusers",
+   "platforms": [
+    "GPL6947"
+   ],
+   "regions": [
+    "Basolateral Amygdala",
+    "Central Nucleus of Amygdala",
+    "Medial Nucleus of Amygdala",
+    "Superior Frontal Cortex"
+   ],
+   "n_samples_total": 128,
+   "n_tissue_samples": 128,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 32,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "AUD": 68,
+    "CTL": 60
+   },
+   "diagnosis_counts_donors": {
+    "AUD": 17,
+    "CTL": 15
+   },
+   "brain_bank": "alcohol study",
+   "decision": "EXCLUDED from modeling: alcohol use disorder, single series"
+  },
+  "GSE35978": {
+   "title": "Expression data from the human cerebellum and parietal cortex brain",
+   "platforms": [
+    "GPL6244"
+   ],
+   "regions": [
+    "CB",
+    "PARIETAL"
+   ],
+   "n_samples_total": 312,
+   "n_tissue_samples": 305,
+   "n_non_tissue_samples": {
+    "reference_rna": 7
+   },
+   "n_donors_within_series": 157,
+   "donor_id_source": "no donor id in GEO; keyed on identical (dx,sex,age,PMI,pH)",
+   "diagnosis_counts_samples": {
+    "CTL": 100,
+    "SCZ": 95,
+    "BD": 82,
+    "MDD": 27,
+    "AMBIG": 1
+   },
+   "diagnosis_counts_donors": {
+    "AMBIG": 1,
+    "BD": 45,
+    "CTL": 48,
+    "MDD": 14,
+    "SCZ": 49
+   },
+   "brain_bank": "Stanley",
+   "decision": "INCLUDED (parietal cortex; cerebellum used only for identity/sex audit)"
+  },
+  "GSE5388": {
+   "title": "Adult postmortem brain tissue (dorsolateral prefrontal cortex) from subjects with bipolar disorder and healthy controls",
+   "platforms": [
+    "GPL96"
+   ],
+   "regions": [
+    "PFC_DLPFC"
+   ],
+   "n_samples_total": 61,
+   "n_tissue_samples": 61,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 61,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 31,
+    "BD": 30
+   },
+   "diagnosis_counts_donors": {
+    "BD": 30,
+    "CTL": 31
+   },
+   "brain_bank": "Stanley",
+   "decision": "SCREENED, NOT ADDED (Stanley Array collection BD/CTL)"
+  },
+  "GSE53987": {
+   "title": "Microarray profiling of PFC, HPC and STR from subjects with schizophrenia, bipolar, MDD or control",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "HPC",
+    "PFC_BA46",
+    "STR"
+   ],
+   "n_samples_total": 205,
+   "n_tissue_samples": 205,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 75,
+   "donor_id_source": "no donor id in GEO; keyed on identical (dx,sex,age,PMI,pH,race)",
+   "diagnosis_counts_samples": {
+    "CTL": 55,
+    "BD": 52,
+    "MDD": 50,
+    "SCZ": 48
+   },
+   "diagnosis_counts_donors": {
+    "BD": 19,
+    "CTL": 19,
+    "MDD": 18,
+    "SCZ": 19
+   },
+   "brain_bank": "Pittsburgh",
+   "decision": "INCLUDED (PFC only; STR for audit; HPC excluded: label mix-ups)"
+  },
+  "GSE54567": {
+   "title": "Expression data from human brain dorsolateral prefrontal cortex - including control samples and samples with major depression disorders (28 samples BA9_M)",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "PFC_BA9"
+   ],
+   "n_samples_total": 28,
+   "n_tissue_samples": 28,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 28,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 14,
+    "MDD": 14
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 14,
+    "MDD": 14
+   },
+   "brain_bank": "Pittsburgh",
+   "decision": "INCLUDED (BA9 males)"
+  },
+  "GSE54568": {
+   "title": "Expression data from human brain dorsolateral prefrontal cortex - including control samples and samples with major depression disorders (30 samples BA9_F)",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "PFC_BA9"
+   ],
+   "n_samples_total": 30,
+   "n_tissue_samples": 30,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 30,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 15,
+    "MDD": 15
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 15,
+    "MDD": 15
+   },
+   "brain_bank": "Pittsburgh",
+   "decision": "INCLUDED (BA9 females)"
+  },
+  "GSE54571": {
+   "title": "Expression data from human brain anterior cingulate cortex - including control samples and samples with major depression disorders (26 samples BA25_F)",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "ACC_BA25"
+   ],
+   "n_samples_total": 26,
+   "n_tissue_samples": 26,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 26,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 13,
+    "MDD": 13
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 13,
+    "MDD": 13
+   },
+   "brain_bank": "Pittsburgh",
+   "decision": "AUDIT ONLY (BA25 females; same donors as GSE54568)"
+  },
+  "GSE54572": {
+   "title": "Expression data from human brain anterior cingulate cortex - including control samples and samples with major depression disorders (24 samples BA25_M)",
+   "platforms": [
+    "GPL570"
+   ],
+   "regions": [
+    "ACC_BA25"
+   ],
+   "n_samples_total": 24,
+   "n_tissue_samples": 24,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 24,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 12,
+    "MDD": 12
+   },
+   "diagnosis_counts_donors": {
+    "CTL": 12,
+    "MDD": 12
+   },
+   "brain_bank": "Pittsburgh",
+   "decision": "AUDIT ONLY (BA25 males; same donors as GSE54567)"
+  },
+  "GSE92538": {
+   "title": "Inference of cell-type composition from human brain transcriptomic datasets illuminates the effects of age, manner of death, dissection, and psychiatric diagnosis",
+   "platforms": [
+    "GPL10526",
+    "GPL17027"
+   ],
+   "regions": [
+    "PFC_DLPFC"
+   ],
+   "n_samples_total": 363,
+   "n_tissue_samples": 363,
+   "n_non_tissue_samples": {},
+   "n_donors_within_series": 172,
+   "donor_id_source": "title/characteristics",
+   "diagnosis_counts_samples": {
+    "CTL": 175,
+    "MDD": 76,
+    "SCZ": 58,
+    "BD": 54
+   },
+   "diagnosis_counts_donors": {
+    "BD": 26,
+    "CTL": 83,
+    "MDD": 41,
+    "SCZ": 22
+   },
+   "brain_bank": "Pritzker",
+   "decision": "INCLUDED (ADDED by us; not in candidate list)"
+  }
+ },
+ "preprocessing": {
+  "start": "raw CEL files, frozen RMA (single-array; no cross-sample information)",
+  "gene_mapping": "Bioconductor annotation; multi-gene probesets dropped; probesets averaged per Entrez gene",
+  "n_genes_common_all_modeling_platforms": 11972
+ },
+ "sex_check": {
+  "method": "Y-gene score (RPS4Y1,DDX3Y,KDM5D,USP9Y,EIF1AY,UTY,ZFY,NLGN4Y) and XIST, two-means per chip type pooled across series; GSE35978 Y-only (no XIST cluster on HuGene 1.0 ST core)",
+  "per_series": {
+   "GSE12649": {
+    "n": 102,
+    "reported": 0,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE17612": {
+    "n": 51,
+    "reported": 50,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE21138": {
+    "n": 59,
+    "reported": 59,
+    "mismatch": 1,
+    "mixed": 2,
+    "low_both": 0
+   },
+   "GSE35978": {
+    "n": 305,
+    "reported": 305,
+    "mismatch": 1,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE53987": {
+    "n": 205,
+    "reported": 205,
+    "mismatch": 8,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE54567": {
+    "n": 28,
+    "reported": 28,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE54568": {
+    "n": 30,
+    "reported": 30,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE54571": {
+    "n": 26,
+    "reported": 26,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE54572": {
+    "n": 24,
+    "reported": 24,
+    "mismatch": 0,
+    "mixed": 0,
+    "low_both": 0
+   },
+   "GSE92538": {
+    "n": 363,
+    "reported": 363,
+    "mismatch": 2,
+    "mixed": 0,
+    "low_both": 12
+   }
+  },
+  "flagged_samples": [
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431912",
+    "title": "DLPFC_Male_Control_UMichigan_101431",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "6.188",
+    "xist": "6.801"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431962",
+    "title": "DLPFC_Male_Control_UMichigan_103998",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "F",
+    "y_score": "6.139",
+    "xist": "8.967"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431973",
+    "title": "DLPFC_Female_Control_UMichigan_104659",
+    "dx": "CTL",
+    "sex_reported": "F",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "5.67",
+    "xist": "8.219"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431976",
+    "title": "DLPFC_Female_BipolarDisorder_UMichigan_104808",
+    "dx": "BD",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.421",
+    "xist": "7.907"
+   },
+   {
+    "gse": "GSE21138",
+    "region": "PFC_BA46",
+    "gsm": "GSM528839",
+    "title": "Control-10",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "MIXED",
+    "y_score": "6.254",
+    "xist": "8.039"
+   },
+   {
+    "gse": "GSE21138",
+    "region": "PFC_BA46",
+    "gsm": "GSM528840",
+    "title": "Control-11",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "MIXED",
+    "y_score": "6.315",
+    "xist": "8.619"
+   },
+   {
+    "gse": "GSE21138",
+    "region": "PFC_BA46",
+    "gsm": "GSM528880",
+    "title": "Scz-21",
+    "dx": "SCZ",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "5.962",
+    "xist": "4.126"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304859",
+    "title": "bipolar_hip_18",
+    "dx": "BD",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.271",
+    "xist": "4.355"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304886",
+    "title": "control_hip_7",
+    "dx": "CTL",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.504",
+    "xist": "3.954"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304889",
+    "title": "MDD_hip_11",
+    "dx": "MDD",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.413",
+    "xist": "3.791"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304898",
+    "title": "MDD_hip_2",
+    "dx": "MDD",
+    "sex_reported": "M",
+    "sex_expr": "F",
+    "y_score": "3.943",
+    "xist": "9.526"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304914",
+    "title": "schiz_hip_4",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "F",
+    "y_score": "3.83",
+    "xist": "9.72"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "HPC",
+    "gsm": "GSM1304917",
+    "title": "schiz_hip_7",
+    "dx": "SCZ",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.533",
+    "xist": "3.853"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "PFC_BA46",
+    "gsm": "GSM1304953",
+    "title": "control_pfc_7",
+    "dx": "CTL",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.721",
+    "xist": "3.81"
+   },
+   {
+    "gse": "GSE53987",
+    "region": "STR",
+    "gsm": "GSM1305011",
+    "title": "control_str_7",
+    "dx": "CTL",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "6.185",
+    "xist": "3.827"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431905",
+    "title": "DLPFC_Male_Control_p_UMichigan_101108",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "5.121",
+    "xist": "4.168"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431911",
+    "title": "DLPFC_Male_Schizophrenia_p_UMichigan_101421",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.899",
+    "xist": "4.429"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431930",
+    "title": "DLPFC_Male_Schizophrenia_p_UMichigan_102218",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.984",
+    "xist": "4.637"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431931",
+    "title": "DLPFC_Male_Schizophrenia_p_UMichigan_102317",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.978",
+    "xist": "4.616"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2431952",
+    "title": "DLPFC_Male_Control_p_UMichigan_103166",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.832",
+    "xist": "4.723"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2432010",
+    "title": "DLPFC_Male_Schizophrenia_p_UMichigan_106564",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.992",
+    "xist": "4.223"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2432039",
+    "title": "DLPFC_Male_Control_p_UMichigan_108017",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.925",
+    "xist": "4.331"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2432041",
+    "title": "DLPFC_Male_Control_p_UMichigan_108066",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.777",
+    "xist": "4.441"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2432047",
+    "title": "DLPFC_Male_Control_p_UMichigan_108425",
+    "dx": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "5.001",
+    "xist": "4.233"
+   },
+   {
+    "gse": "GSE92538",
+    "region": "PFC_DLPFC",
+    "gsm": "GSM2432071",
+    "title": "DLPFC_Male_Schizophrenia_p_UMichigan_109371",
+    "dx": "SCZ",
+    "sex_reported": "M",
+    "sex_expr": "LOW_BOTH",
+    "y_score": "4.865",
+    "xist": "4.62"
+   },
+   {
+    "gse": "GSE35978",
+    "region": "PARIETAL",
+    "gsm": "GSM878427",
+    "title": "CC196_40710",
+    "dx": "BD",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "y_score": "7.814",
+    "xist": ""
+   }
+  ],
+  "donors_with_both_sexes_in_expression": [
+   {
+    "donor_id": "D0177",
+    "series": "GSE92538",
+    "regions": "PFC_DLPFC",
+    "dx_labels": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "F,M"
+   },
+   {
+    "donor_id": "D0190",
+    "series": "GSE92538",
+    "regions": "PFC_DLPFC",
+    "dx_labels": "BD",
+    "sex_reported": "F",
+    "sex_expr": "F,M"
+   },
+   {
+    "donor_id": "D0462",
+    "series": "GSE35978",
+    "regions": "CB,PARIETAL",
+    "dx_labels": "BD",
+    "sex_reported": "F",
+    "sex_expr": "F,M"
+   }
+  ],
+  "decision_written_before_modeling": "PRIMARY analysis excludes 'affected' donors: modeling sample sex conflicts with reported sex, any sample of the donor MIXED (Y and XIST both high), expression shows both sexes across the donor's samples, or confirmed identity with a different diagnosis label. Sensitivity (required control): all-eligible-donor analysis vs without affected donors vs without matched random donors (same diagnosis x cohort composition, 20 repeats). LOW_BOTH samples (weak probes, mostly U Michigan U133 Plus 2 arrays whose XIST calls male as reported) are NOT treated as affected."
+ },
+ "donor_identity": {
+  "method": "expression residual correlation on genotype-driven identity genes (300 genes, top-10 PCs removed per unit); mutual best hits; thresholds from cross-bank negative controls",
+  "validation": {
+   "n_known_pairs": 123,
+   "n_mutual_best": 112,
+   "z>=3": {
+    "called": 104,
+    "true_positive": 91,
+    "false_positive": 13,
+    "sensitivity": 0.74
+   },
+   "z>=4": {
+    "called": 55,
+    "true_positive": 49,
+    "false_positive": 6,
+    "sensitivity": 0.398
+   },
+   "z>=5": {
+    "called": 14,
+    "true_positive": 14,
+    "false_positive": 0,
+    "sensitivity": 0.114
+   },
+   "z>=6": {
+    "called": 3,
+    "true_positive": 3,
+    "false_positive": 0,
+    "sensitivity": 0.024
+   },
+   "z>=7": {
+    "called": 2,
+    "true_positive": 2,
+    "false_positive": 0,
+    "sensitivity": 0.016
+   },
+   "z>=8": {
+    "called": 0,
+    "true_positive": 0,
+    "false_positive": 0,
+    "sensitivity": 0.0
+   },
+   "validation_at_3.9": {
+    "called": 58,
+    "true_positive": 52,
+    "sensitivity": 0.423
+   },
+   "validation_at_5.199999999999999": {
+    "called": 10,
+    "true_positive": 10,
+    "sensitivity": 0.081
+   }
+  },
+  "calibration": {
+   "sibille_M": {
+    "known": 24,
+    "called": 5,
+    "tp": 5
+   },
+   "GSE53987_PFC_HPC": {
+    "known": 63,
+    "called": 60,
+    "tp": 51
+   }
+  },
+  "negative_control": {
+   "n_hits": 1927,
+   "max_z": 5.077515552251276,
+   "p99_z": 3.8071810314332852
+  },
+  "z_match": 5.199999999999999,
+  "z_probable": 3.9,
+  "z_split_grouping": 3.0,
+  "metadata_matching": {
+   "GSE17612~GSE21138": {
+    "n_a": 49,
+    "n_b": 59,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE17612~GSE21935": {
+    "n_a": 49,
+    "n_b": 42,
+    "matches": 35,
+    "null_mean": 1.99,
+    "null_max": 6,
+    "dx_agree": 35
+   },
+   "GSE17612~GSE35978": {
+    "n_a": 49,
+    "n_b": 157,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE17612~GSE5388": {
+    "n_a": 49,
+    "n_b": 61,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE17612~GSE53987": {
+    "n_a": 49,
+    "n_b": 75,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE17612~GSE92538": {
+    "n_a": 49,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21138~GSE21935": {
+    "n_a": 59,
+    "n_b": 42,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21138~GSE35978": {
+    "n_a": 59,
+    "n_b": 157,
+    "matches": 0,
+    "null_mean": 0.03,
+    "null_max": 1,
+    "dx_agree": 0
+   },
+   "GSE21138~GSE5388": {
+    "n_a": 59,
+    "n_b": 61,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21138~GSE53987": {
+    "n_a": 59,
+    "n_b": 75,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21138~GSE92538": {
+    "n_a": 59,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21935~GSE35978": {
+    "n_a": 42,
+    "n_b": 157,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21935~GSE5388": {
+    "n_a": 42,
+    "n_b": 61,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21935~GSE53987": {
+    "n_a": 42,
+    "n_b": 75,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE21935~GSE92538": {
+    "n_a": 42,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.0,
+    "null_max": 0,
+    "dx_agree": 0
+   },
+   "GSE35978~GSE5388": {
+    "n_a": 157,
+    "n_b": 61,
+    "matches": 10,
+    "null_mean": 1.93,
+    "null_max": 5,
+    "dx_agree": 10
+   },
+   "GSE35978~GSE53987": {
+    "n_a": 157,
+    "n_b": 75,
+    "matches": 0,
+    "null_mean": 0.2,
+    "null_max": 2,
+    "dx_agree": 0
+   },
+   "GSE35978~GSE92538": {
+    "n_a": 157,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.25,
+    "null_max": 3,
+    "dx_agree": 0
+   },
+   "GSE5388~GSE53987": {
+    "n_a": 61,
+    "n_b": 75,
+    "matches": 0,
+    "null_mean": 0.02,
+    "null_max": 1,
+    "dx_agree": 0
+   },
+   "GSE5388~GSE92538": {
+    "n_a": 61,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.14,
+    "null_max": 1,
+    "dx_agree": 0
+   },
+   "GSE53987~GSE92538": {
+    "n_a": 75,
+    "n_b": 158,
+    "matches": 0,
+    "null_mean": 0.17,
+    "null_max": 1,
+    "dx_agree": 0
+   },
+   "GSE17612~GSE21935_id_strings": {
+    "shared_ids": 36,
+    "sex_and_age_agree": 35,
+    "n_GSE17612": 51,
+    "n_GSE21935": 42
+   }
+  },
+  "dedup_summary": {
+   "n_donors_total": 569,
+   "n_donors_in_more_than_one_series": 129,
+   "by_series_combination": {
+    "GSE12649,GSE35978": 78,
+    "GSE54567,GSE54572": 19,
+    "GSE53987,GSE54568,GSE54571": 14,
+    "GSE54568,GSE54571": 12,
+    "GSE53987,GSE54567,GSE54572": 5,
+    "GSE53987,GSE54568": 1
+   },
+   "by_confidence": {
+    "high": 54,
+    "medium_only": 75
+   },
+   "confirmed_cross_series_sample_pairs": {
+    "GSE12649~GSE35978": 109,
+    "GSE53987~GSE54567": 7,
+    "GSE53987~GSE54568": 25,
+    "GSE53987~GSE54571": 17,
+    "GSE53987~GSE54572": 3,
+    "GSE54567~GSE54572": 5,
+    "GSE54568~GSE54571": 12
+   },
+   "n_split_groups": 553,
+   "n_split_groups_with_more_than_one_donor": 15
+  },
+  "confirmed_matches_with_conflicting_diagnosis": [
+   {
+    "gsm_a": "GSM317470",
+    "title_a": "schizophrenia, BA46-88",
+    "gse_a": "GSE12649",
+    "dx_a": "SCZ",
+    "gsm_b": "GSM317472",
+    "title_b": "control, BA46-91",
+    "gse_b": "GSE12649",
+    "dx_b": "CTL",
+    "z": 5.659477534807746
+   },
+   {
+    "gsm_a": "GSM317485",
+    "title_a": "bipolar disorder, BA46-104",
+    "gse_a": "GSE12649",
+    "dx_a": "BD",
+    "gsm_b": "GSM878469",
+    "title_b": "CC238_40610",
+    "gse_b": "GSE35978",
+    "dx_b": "CTL",
+    "z": 6.112723499166099
+   },
+   {
+    "gsm_a": "GSM2431771",
+    "title_a": "DLPFC_Male_Control_UCDavis_103984",
+    "gse_a": "GSE92538",
+    "dx_a": "CTL",
+    "gsm_b": "GSM2431838",
+    "title_b": "DLPFC_Male_BipolarDisorder_UCDavis_107366",
+    "gse_b": "GSE92538",
+    "dx_b": "BD",
+    "z": 6.2779348700495765
+   }
+  ],
+  "within_series_hits_not_explained_by_metadata": [
+   {
+    "gse_a": "GSE12649",
+    "title_a": "schizophrenia, BA46-88",
+    "region_a": "PFC_BA46",
+    "dx_a": "SCZ",
+    "title_b": "control, BA46-91",
+    "region_b": "PFC_BA46",
+    "dx_b": "CTL",
+    "z": 5.659477534807746,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE21138",
+    "title_a": "Control-10",
+    "region_a": "PFC_BA46",
+    "dx_a": "CTL",
+    "title_b": "Control-11",
+    "region_b": "PFC_BA46",
+    "dx_b": "CTL",
+    "z": 5.880857532944721,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE35978",
+    "title_a": "CC78_111109",
+    "region_a": "CB",
+    "dx_a": "SCZ",
+    "title_b": "CC81_111109",
+    "region_b": "CB",
+    "dx_b": "CTL",
+    "z": 4.147455424746592,
+    "tier": "probable"
+   },
+   {
+    "gse_a": "GSE35978",
+    "title_a": "CC8_100909",
+    "region_a": "CB",
+    "dx_a": "CTL",
+    "title_b": "CC209_40610",
+    "region_b": "PARIETAL",
+    "dx_b": "BD",
+    "z": 4.036817403517797,
+    "tier": "probable"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "bipolar_hip_18",
+    "region_a": "HPC",
+    "dx_a": "BD",
+    "title_b": "schiz_pfc_10",
+    "region_b": "PFC_BA46",
+    "dx_b": "SCZ",
+    "z": 6.450300646659334,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_11",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_pfc_5",
+    "region_b": "PFC_BA46",
+    "dx_b": "MDD",
+    "z": 6.303559702141622,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_14",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_pfc_8",
+    "region_b": "PFC_BA46",
+    "dx_b": "MDD",
+    "z": 6.16081958175662,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_17",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_pfc_11",
+    "region_b": "PFC_BA46",
+    "dx_b": "MDD",
+    "z": 6.549383912380333,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_2",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "schiz_pfc_13",
+    "region_b": "PFC_BA46",
+    "dx_b": "SCZ",
+    "z": 4.01404399681558,
+    "tier": "probable"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_10",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "schiz_pfc_4",
+    "region_b": "PFC_BA46",
+    "dx_b": "SCZ",
+    "z": 5.782119298924212,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_1",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "MDD_pfc_14",
+    "region_b": "PFC_BA46",
+    "dx_b": "MDD",
+    "z": 8.743513593483433,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_4",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "MDD_pfc_17",
+    "region_b": "PFC_BA46",
+    "dx_b": "MDD",
+    "z": 6.3364579115117925,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_7",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "schiz_pfc_1",
+    "region_b": "PFC_BA46",
+    "dx_b": "SCZ",
+    "z": 6.388405683696811,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "bipolar_hip_18",
+    "region_a": "HPC",
+    "dx_a": "BD",
+    "title_b": "schiz_str_10",
+    "region_b": "STR",
+    "dx_b": "SCZ",
+    "z": 6.866406199441727,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_11",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_str_5",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 5.554533532490711,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_14",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_str_8",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 8.684234837951788,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_17",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_str_11",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 8.45342189381042,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_2",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "schiz_str_13",
+    "region_b": "STR",
+    "dx_b": "SCZ",
+    "z": 4.947486687871248,
+    "tier": "probable"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "MDD_hip_8",
+    "region_a": "HPC",
+    "dx_a": "MDD",
+    "title_b": "MDD_str_2",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 5.773878056556048,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_10",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "schiz_str_4",
+    "region_b": "STR",
+    "dx_b": "SCZ",
+    "z": 5.793266210747261,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_1",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "MDD_str_14",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 5.093848190353887,
+    "tier": "probable"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_4",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "MDD_str_17",
+    "region_b": "STR",
+    "dx_b": "MDD",
+    "z": 7.789861961645466,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE53987",
+    "title_a": "schiz_hip_7",
+    "region_a": "HPC",
+    "dx_a": "SCZ",
+    "title_b": "schiz_str_1",
+    "region_b": "STR",
+    "dx_b": "SCZ",
+    "z": 6.3414191176554064,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE92538",
+    "title_a": "DLPFC_Male_Control_UCDavis_103984",
+    "region_a": "PFC_DLPFC",
+    "dx_a": "CTL",
+    "title_b": "DLPFC_Male_BipolarDisorder_UCDavis_107366",
+    "region_b": "PFC_DLPFC",
+    "dx_b": "BD",
+    "z": 6.2779348700495765,
+    "tier": "match"
+   },
+   {
+    "gse_a": "GSE92538",
+    "title_a": "DLPFC_Male_MajorDepressiveDisorder_p_UMichigan_101850",
+    "region_a": "PFC_DLPFC",
+    "dx_a": "MDD",
+    "title_b": "DLPFC_Male_MajorDepressiveDisorder_p_UMichigan_109120",
+    "region_b": "PFC_DLPFC",
+    "dx_b": "MDD",
+    "z": 3.9540972227274325,
+    "tier": "probable"
+   }
+  ],
+  "confidence_statement": "Detection sensitivity is limited (validation 0.42 at probable tier for cross-tissue pairs), so the number of duplicates found is a LOWER BOUND. Splitting therefore uses liberal split groups and same-bank series are merged into one cohort."
+ },
+ "cohorts": {
+  "Stanley": [
+   "GSE35978 (model: parietal)",
+   "GSE12649 (audit)"
+  ],
+  "Pittsburgh": [
+   "GSE53987 (model: PFC)",
+   "GSE54567/GSE54568 (model: BA9)",
+   "GSE54571/GSE54572 (audit: BA25)"
+  ],
+  "CharingCross": [
+   "GSE17612"
+  ],
+  "Victoria": [
+   "GSE21138"
+  ],
+  "Pritzker": [
+   "GSE92538"
+  ]
+ },
+ "region_decision": "one cortical sample per donor; prefrontal preferred; Stanley modelled from GSE35978 parietal cortex (single platform/region for the cohort). Cerebellum, hippocampus, striatum, amygdala/ACC not used for modeling. Technical replicate arrays of the same donor+region are averaged (Pritzker; repeated GSE35978 chips).",
+ "class_inclusion": {
+  "rule": "disorder enters Task A/B iff >= 3 distinct cohorts each contribute >= 8 unique donors after deduplication (also required after removing affected donors)",
+  "min_donors_per_contributing_cohort": 8,
+  "per_disorder": {
+   "SCZ": {
+    "donors_per_cohort": {
+     "CharingCross": 28,
+     "Pittsburgh": 15,
+     "Pritzker": 22,
+     "Stanley": 49,
+     "Victoria": 30
+    },
+    "donors_per_cohort_excluding_affected": {
+     "CharingCross": 28,
+     "Pittsburgh": 15,
+     "Pritzker": 22,
+     "Stanley": 49,
+     "Victoria": 29
+    },
+    "contributing_cohorts": [
+     "CharingCross",
+     "Pittsburgh",
+     "Pritzker",
+     "Stanley",
+     "Victoria"
+    ],
+    "n_contributing": 5,
+    "n_contributing_excluding_affected": 5,
+    "included": true
+   },
+   "BD": {
+    "donors_per_cohort": {
+     "CharingCross": 0,
+     "Pittsburgh": 17,
+     "Pritzker": 25,
+     "Stanley": 45,
+     "Victoria": 0
+    },
+    "donors_per_cohort_excluding_affected": {
+     "CharingCross": 0,
+     "Pittsburgh": 17,
+     "Pritzker": 24,
+     "Stanley": 44,
+     "Victoria": 0
+    },
+    "contributing_cohorts": [
+     "Pittsburgh",
+     "Pritzker",
+     "Stanley"
+    ],
+    "n_contributing": 3,
+    "n_contributing_excluding_affected": 3,
+    "included": true
+   },
+   "MDD": {
+    "donors_per_cohort": {
+     "CharingCross": 0,
+     "Pittsburgh": 37,
+     "Pritzker": 40,
+     "Stanley": 14,
+     "Victoria": 0
+    },
+    "donors_per_cohort_excluding_affected": {
+     "CharingCross": 0,
+     "Pittsburgh": 37,
+     "Pritzker": 40,
+     "Stanley": 14,
+     "Victoria": 0
+    },
+    "contributing_cohorts": [
+     "Pittsburgh",
+     "Pritzker",
+     "Stanley"
+    ],
+    "n_contributing": 3,
+    "n_contributing_excluding_affected": 3,
+    "included": true
+   }
+  },
+  "LOCKED_CLASS_LIST": [
+   "SCZ",
+   "BD",
+   "MDD"
+  ],
+  "locked": true
+ },
+ "tasks": {
+  "A_SCZ_vs_CTL": {
+   "cohorts": [
+    "CharingCross",
+    "Pittsburgh",
+    "Pritzker",
+    "Stanley",
+    "Victoria"
+   ],
+   "classes": [
+    "SCZ",
+    "CTL"
+   ],
+   "donors": {
+    "CharingCross": {
+     "CTL": 23,
+     "SCZ": 28
+    },
+    "Pittsburgh": {
+     "CTL": 37,
+     "SCZ": 15
+    },
+    "Pritzker": {
+     "CTL": 82,
+     "SCZ": 22
+    },
+    "Stanley": {
+     "CTL": 48,
+     "SCZ": 49
+    },
+    "Victoria": {
+     "CTL": 28,
+     "SCZ": 30
+    }
+   },
+   "n_total": 362,
+   "n_affected": 5
+  },
+  "A_BD_vs_CTL": {
+   "cohorts": [
+    "Pittsburgh",
+    "Pritzker",
+    "Stanley"
+   ],
+   "classes": [
+    "BD",
+    "CTL"
+   ],
+   "donors": {
+    "Pittsburgh": {
+     "BD": 17,
+     "CTL": 37
+    },
+    "Pritzker": {
+     "BD": 25,
+     "CTL": 82
+    },
+    "Stanley": {
+     "BD": 45,
+     "CTL": 48
+    }
+   },
+   "n_total": 254,
+   "n_affected": 5
+  },
+  "A_MDD_vs_CTL": {
+   "cohorts": [
+    "Pittsburgh",
+    "Pritzker",
+    "Stanley"
+   ],
+   "classes": [
+    "MDD",
+    "CTL"
+   ],
+   "donors": {
+    "Pittsburgh": {
+     "CTL": 37,
+     "MDD": 37
+    },
+    "Pritzker": {
+     "CTL": 82,
+     "MDD": 40
+    },
+    "Stanley": {
+     "CTL": 48,
+     "MDD": 14
+    }
+   },
+   "n_total": 258,
+   "n_affected": 3
+  },
+  "B_multiclass": {
+   "cohorts": [
+    "Pittsburgh",
+    "Pritzker",
+    "Stanley"
+   ],
+   "classes": [
+    "SCZ",
+    "BD",
+    "MDD"
+   ],
+   "donors": {
+    "Pittsburgh": {
+     "BD": 17,
+     "MDD": 37,
+     "SCZ": 15
+    },
+    "Pritzker": {
+     "BD": 25,
+     "MDD": 40,
+     "SCZ": 22
+    },
+    "Stanley": {
+     "BD": 45,
+     "MDD": 14,
+     "SCZ": 49
+    }
+   },
+   "n_total": 264,
+   "n_affected": 2,
+   "rule": "cohorts contributing >= 2 included disorders (>= 8 donors each); single-disorder cohorts would make cohort identity = label"
+  }
+ },
+ "modeling_donors": {
+  "n_eligible": 540,
+  "n_affected": 7,
+  "affected_donors": [
+   {
+    "donor_id": "D0023",
+    "cohort": "Pittsburgh",
+    "series": "GSE53987",
+    "dx": "CTL",
+    "dx_labels": "CTL",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "affected_reason": "expression sex M vs reported F"
+   },
+   {
+    "donor_id": "D0177",
+    "cohort": "Pritzker",
+    "series": "GSE92538",
+    "dx": "CTL",
+    "dx_labels": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "F,M",
+    "affected_reason": "expression sex F,M vs reported M; samples of this donor show both sexes"
+   },
+   {
+    "donor_id": "D0190",
+    "cohort": "Pritzker",
+    "series": "GSE92538",
+    "dx": "BD",
+    "dx_labels": "BD",
+    "sex_reported": "F",
+    "sex_expr": "F,M",
+    "affected_reason": "expression sex F,M vs reported F; samples of this donor show both sexes"
+   },
+   {
+    "donor_id": "D0363",
+    "cohort": "Victoria",
+    "series": "GSE21138",
+    "dx": "CTL",
+    "dx_labels": "CTL",
+    "sex_reported": "M",
+    "sex_expr": "MIXED",
+    "affected_reason": "a sample shows Y and XIST both high (mixture/XXY)"
+   },
+   {
+    "donor_id": "D0403",
+    "cohort": "Victoria",
+    "series": "GSE21138",
+    "dx": "SCZ",
+    "dx_labels": "SCZ",
+    "sex_reported": "F",
+    "sex_expr": "M",
+    "affected_reason": "expression sex M vs reported F"
+   },
+   {
+    "donor_id": "D0462",
+    "cohort": "Stanley",
+    "series": "GSE35978",
+    "dx": "BD",
+    "dx_labels": "BD",
+    "sex_reported": "F",
+    "sex_expr": "F,M",
+    "affected_reason": "expression sex F,M vs reported F; samples of this donor show both sexes"
+   },
+   {
+    "donor_id": "D0503",
+    "cohort": "Stanley",
+    "series": "GSE12649,GSE35978",
+    "dx": "CTL",
+    "dx_labels": "BD,CTL",
+    "sex_reported": "M",
+    "sex_expr": "M",
+    "affected_reason": "identity match to a sample with a different diagnosis (BD,CTL)"
+   }
+  ],
+  "unresolvable_label_donors_excluded": [
+   {
+    "donor_id": "D0239",
+    "series": "GSE92538",
+    "dx_labels": "BD,CTL",
+    "gsms": "GSM2431771;GSM2431838;GSM2431960;GSM2432030;GSM2432031"
+   }
+  ],
+  "by_cohort_dx": {
+   "CharingCross": {
+    "BD": 0,
+    "CTL": 23,
+    "MDD": 0,
+    "SCZ": 28
+   },
+   "Pittsburgh": {
+    "BD": 17,
+    "CTL": 37,
+    "MDD": 37,
+    "SCZ": 15
+   },
+   "Pritzker": {
+    "BD": 25,
+    "CTL": 82,
+    "MDD": 40,
+    "SCZ": 22
+   },
+   "Stanley": {
+    "BD": 45,
+    "CTL": 48,
+    "MDD": 14,
+    "SCZ": 49
+   },
+   "Victoria": {
+    "BD": 0,
+    "CTL": 28,
+    "MDD": 0,
+    "SCZ": 30
+   }
+  },
+  "by_batch": {
+   "GSE35978": 156,
+   "GSE92538_U133A": 103,
+   "GSE53987": 67,
+   "GSE92538_U133Plus2(U133Aprobes)": 66,
+   "GSE21138": 58,
+   "GSE17612": 51,
+   "GSE54567": 24,
+   "GSE54568": 15
+  }
+ }
+}

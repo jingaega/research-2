@@ -1,7 +1,7 @@
 """Sex check on fRMA gene-level data (Toker et al. 2016 style): separate two-cluster calls for the
 Y-gene score and for XIST, computed per (series, chip, region). Label-free.
  - sex_expr: 'M' if Y-call male and XIST-call low; 'F' if Y-call female and XIST-call high;
-   'AMBIG' if the two calls disagree (e.g. XXY, contamination/mixture, or failed probes).
+   'MIXED' if Y high and XIST high (two-donor mixture or XXY); 'LOW_BOTH' if both low (technical).
  - HuGene (GSE35978): XIST transcript cluster is multi-mapped and excluded from the map, so the call
    uses the Y score only (XIST taken from the raw transcript cluster if present).
 Output: results/sex_check.tsv (+ summary in DATA_AUDIT.json later)."""
@@ -32,6 +32,7 @@ def call(x, min_sep):
 recs = []
 for f in sorted(glob.glob(str(DATA / "expr" / "*.pkl"))):
     name = pathlib.Path(f).stem; gse, chip = name.split("__")
+    if gse == "GSE92538" and chip == "HG-U133_Plus_2": chip += "(U133A-probes)"  # different probe subset => own pool
     g = pd.read_pickle(f)
     g.index = [sym.get(i, i) for i in g.index]; g = g.groupby(level=0).mean()
     yg = [x for x in Y if x in g.index]
@@ -56,18 +57,20 @@ for chip, d in R0.groupby("chip"):
         if np.isnan(xsep): sx = "M" if ymale[i] else "F"
         elif ymale[i] and not xfem[i]: sx = "M"
         elif (not ymale[i]) and xfem[i]: sx = "F"
-        else: sx = "AMBIG"
+        elif ymale[i] and xfem[i]: sx = "MIXED"      # Y high AND XIST high: mixture of two donors, or XXY
+        else: sx = "LOW_BOTH"                         # Y low AND XIST low: weak probes / technical
         rep = m.sex_reported
         rows.append(dict(expr=r.expr, chip=chip, gse=r.gse, region=m.region, gsm=r.gsm, title=m.title, dx=m.dx,
                          donor_local=m.donor_local, y_score=round(r.y_score, 3),
                          xist=None if np.isnan(r.xist) else round(r.xist, 3),
                          y_margin=round((r.y_score - ymid) / ysep, 3), y_sep=round(ysep, 2),
                          xist_sep=None if np.isnan(xsep) else round(xsep, 2), sex_reported=rep, sex_expr=sx,
-                         mismatch=bool(rep in ("M", "F") and sx in ("M", "F") and rep != sx)))
+                         mismatch=bool(rep in ("M", "F") and sx in ("M", "F") and rep != sx),
+                         xist_call=None if np.isnan(xsep) else ("F" if xfem[i] else "M")))
 r = pd.DataFrame(rows)
 r.to_csv(RES / "sex_check.tsv", sep="\t", index=False)
 print(r.groupby(["expr", "region"]).agg(n=("gsm", "size"), y_sep=("y_sep", "first"), xist_sep=("xist_sep", "first"),
-      mismatch=("mismatch", "sum"), ambiguous=("sex_expr", lambda v: (v == "AMBIG").sum()),
+      mismatch=("mismatch", "sum"), mixed=("sex_expr", lambda v: (v == "MIXED").sum()), low_both=("sex_expr", lambda v: (v == "LOW_BOTH").sum()),
       unreported=("sex_reported", lambda v: (~v.isin(["M", "F"])).sum())).to_string())
-bad = r[r.mismatch | (r.sex_expr == "AMBIG")]
+bad = r[r.mismatch | r.sex_expr.isin(["MIXED", "LOW_BOTH"])]
 print(bad[["gse", "region", "gsm", "title", "dx", "donor_local", "sex_reported", "sex_expr", "y_score", "xist"]].to_string())

@@ -1,0 +1,31 @@
+{
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "numpy": "2.4.6",
+  "pandas": "3.0.6",
+  "scipy": "1.17.1",
+  "scikit_learn": "1.9.1",
+  "R": "R version 4.3.3 (2024-02-29)",
+  "limma": "3.58.1",
+  "frma": "1.54.0",
+  "affy": "1.80.0"
+ },
+ "note": "dev donors only, permuted labels, no metrics computed",
+ "task": "SCZ vs CTL (largest task)",
+ "n_donors": 272,
+ "n_genes": 11955,
+ "timings": {
+  "LR_no_graph": {
+   "seconds_25_folds": 62.0,
+   "folds": 25
+  },
+  "LR_graph_smoothed": {
+   "seconds_25_folds": 62.5,
+   "folds": 25
+  },
+  "GCN_one_fold_150_epochs": {
+   "seconds": 89.4
+  }
+ }
+}

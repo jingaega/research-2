@@ -27,8 +27,21 @@ for f in sorted(glob.glob(str(DATA / "expr" / "*.pkl"))):
 common = sorted(set.intersection(*[set(u.index) for u in units.values()]))
 chrom = sym.reindex(common)["CHR"].astype(str)
 auto = [g for g in common if chrom.get(g, "") not in ("X", "Y", "nan", "")]
-Z = {k: (u.loc[auto].sub(u.loc[auto].mean(axis=1), axis=0).div(u.loc[auto].std(axis=1) + 1e-9, axis=0)) for k, u in units.items()}
-print("units:", len(units), "| genes common to all units:", len(common), "| autosomal:", len(auto))
+import sys
+N_PC = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+
+def residualise(u, k):
+    """z-score genes within the unit, then remove the top-k principal components (shared donor-state axes:
+    agonal/hypoxia response, pH, cell composition). Residuals keep donor-specific (genotype-driven) signal."""
+    z = u.sub(u.mean(axis=1), axis=0).div(u.std(axis=1) + 1e-9, axis=0).values
+    if k > 0:
+        U, S, Vt = np.linalg.svd(z, full_matrices=False)
+        z = z - (U[:, :k] * S[:k]) @ Vt[:k]
+    z = (z - z.mean(1, keepdims=True)) / (z.std(1, keepdims=True) + 1e-9)
+    return pd.DataFrame(z, index=u.index, columns=u.columns)
+
+Z = {k: residualise(u.loc[auto], N_PC) for k, u in units.items()}
+print("units:", len(units), "| genes common to all units:", len(common), "| autosomal:", len(auto), "| PCs removed:", N_PC)
 
 def donor_key(gsm):
     r = s.loc[gsm]; return f"{r.gse}:{r.donor_local}"
@@ -78,55 +91,81 @@ R["calib_min"] = R[list(calib)].min(axis=1); R["calib_mean"] = R[list(calib)].me
 N_ID = 300
 idg = R.sort_values("calib_min", ascending=False).index[:N_ID].tolist()
 R.assign(symbol=sym.reindex(R.index)["SYMBOL"], selected=R.index.isin(idg)).sort_values("calib_min", ascending=False) \
- .to_csv(RES / "identity_genes.tsv", sep="\t")
+ .to_csv(RES / f"identity_genes_pc{N_PC}.tsv", sep="\t")
 print("top identity genes:", sym.reindex(idg[:25])["SYMBOL"].tolist())
 print("validation-set gene r: selected mean %.3f vs all-genes mean %.3f" % (R.loc[idg, "GSE35978_CB_vs_PARIETAL"].mean(), R["GSE35978_CB_vs_PARIETAL"].mean()))
 
 def scan(ua, ub, genes=idg):
+    """Mutual best hits between two units. Score = min(row z, column z): how far the candidate correlation
+    stands out from every alternative for sample a (row) and for sample b (column)."""
     A = Z[ua].loc[genes]; B = Z[ub].loc[genes]
     C = np.corrcoef(A.T.values, B.T.values)[:A.shape[1], A.shape[1]:]
     same = ua == ub
     if same: np.fill_diagonal(C, np.nan)
-    flat = C[~np.isnan(C)]; med = np.median(flat); mad = 1.4826 * np.median(np.abs(flat - med)) + 1e-9
     best_b = np.nanargmax(C, 1); best_a = np.nanargmax(C, 0)
     out = []
     for i in range(C.shape[0]):
         j = best_b[i]
         if best_a[j] != i: continue
         if same and j < i: continue
-        row = np.sort(C[i][~np.isnan(C[i])])[::-1]
+        row = np.delete(C[i], j); col = np.delete(C[:, j], i)
+        row = row[~np.isnan(row)]; col = col[~np.isnan(col)]
+        zr = (C[i, j] - row.mean()) / (row.std() + 1e-9); zc = (C[i, j] - col.mean()) / (col.std() + 1e-9)
         out.append(dict(unit_a=ua, gsm_a=A.columns[i], unit_b=ub, gsm_b=B.columns[j], r=C[i, j],
-                        z=(C[i, j] - med) / mad, r_second=row[1] if len(row) > 1 else np.nan))
+                        z_row=zr, z_col=zc, z=min(zr, zc), r_second=np.sort(row)[::-1][0] if len(row) else np.nan))
     return pd.DataFrame(out)
 
+BANK = {"GSE12649": "Stanley", "GSE35978": "Stanley", "GSE17612": "CharingCross_UK", "GSE21138": "Victoria_AU",
+        "GSE53987": "Pittsburgh", "GSE54567": "Pittsburgh", "GSE54568": "Pittsburgh", "GSE54571": "Pittsburgh",
+        "GSE54572": "Pittsburgh", "GSE92538": "Pritzker"}
+def bank(u): return BANK[u.split("__")[0]]
+def recovery(pairs, ua, ub, zt=4):
+    sc_ = scan(ua, ub); truth_ = {(p[1], p[3]) if p[0] == ua else (p[3], p[1]) for p in pairs if {p[0], p[2]} == {ua, ub}}
+    ok = sc_[sc_.z >= zt]; tp = sum((a, b) in truth_ for a, b in zip(ok.gsm_a, ok.gsm_b))
+    return {"known": len(truth_), "called": int(len(ok)), "tp": int(tp)}
+cal_units = {"sibille_M": ([u for u in Z if u.startswith("GSE54567")][0], [u for u in Z if u.startswith("GSE54572")][0], calib["sibille_BA9_vs_BA25"]),
+             "GSE53987_PFC_HPC": ([u for u in Z if u.startswith("GSE53987") and u.endswith("PFC_BA46")][0], [u for u in Z if u.startswith("GSE53987") and u.endswith("HPC")][0], calib["GSE53987_regions"])}
+cal_rec = {k: recovery(p, a, b) for k, (a, b, p) in cal_units.items()}
+print("calibration recovery (z>=4):", cal_rec)
 # validation: how well do known CB<->PARIETAL pairs get recovered?
 va = valid["GSE35978_CB_vs_PARIETAL"]
 ucb = [u for u in Z if u.startswith("GSE35978") and u.endswith("|CB")][0]; upa = [u for u in Z if u.startswith("GSE35978") and u.endswith("|PARIETAL")][0]
 sc = scan(ucb, upa); truth = {(a, b) for _, a, _, b in [(p[0], p[1], p[2], p[3]) if p[0] == ucb else (p[2], p[3], p[0], p[1]) for p in va]}
 sc["true"] = [(a, b) in truth for a, b in zip(sc.gsm_a, sc.gsm_b)]
 vres = {"n_known_pairs": len(truth), "n_mutual_best": int(len(sc))}
-for zt in (3, 4, 5, 6, 8):
+for zt in (3, 4, 5, 6, 7, 8):
     called = sc[sc.z >= zt]
     vres[f"z>={zt}"] = {"called": int(len(called)), "true_positive": int(called.true.sum()),
                         "false_positive": int((~called.true).sum()), "sensitivity": round(called.true.sum() / len(truth), 3)}
 print("validation:", json.dumps(vres))
-Z_MATCH = 5.0
 allm = []
 names = sorted(Z)
 for ua, ub in itertools.combinations_with_replacement(names, 2):
     m = scan(ua, ub)
-    if len(m): allm.append(m[m.z >= 3])
+    if len(m): allm.append(m)
 M = pd.concat(allm, ignore_index=True)
+M["bank_a"] = [bank(u) for u in M.unit_a]; M["bank_b"] = [bank(u) for u in M.unit_b]
+neg = M[M.bank_a != M.bank_b]   # negative controls: different brain banks cannot share donors
+Z_MATCH = float(max(4.0, np.ceil(neg.z.max() * 10) / 10 + 0.1))  # strictly above every negative-control hit
+Z_PROBABLE = float(np.ceil(np.percentile(neg.z, 99) * 10) / 10)
+print("negative-control mutual-best hits:", len(neg), "| max z %.2f | 99th pct %.2f -> Z_MATCH %.1f, Z_PROBABLE %.1f"
+      % (neg.z.max(), np.percentile(neg.z, 99), Z_MATCH, Z_PROBABLE))
+for zt in (Z_PROBABLE, Z_MATCH):
+    c = sc[sc.z >= zt]; vres[f"validation_at_{zt}"] = {"called": int(len(c)), "true_positive": int(c.true.sum()), "sensitivity": round(c.true.sum() / len(truth), 3)}
+print("validation at thresholds:", {k: v for k, v in vres.items() if k.startswith("validation_at")})
 for side in ("a", "b"):
     M[f"gse_{side}"] = s.reindex(M[f"gsm_{side}"])["gse"].values
     for c in ("dx", "region", "sex_reported", "age", "pmi", "ph", "donor_local", "title"):
         M[f"{c}_{side}"] = s.reindex(M[f"gsm_{side}"])[c].values
 M["same_metadata_donor"] = (M.gse_a == M.gse_b) & (M.donor_local_a == M.donor_local_b)
 M["dx_agree"] = M.dx_a == M.dx_b
-M.to_csv(RES / "identity_matches.tsv", sep="\t", index=False)
+M.to_csv(RES / f"identity_matches_pc{N_PC}.tsv", sep="\t", index=False)
 write_json({"versions": versions(), "n_identity_genes": N_ID, "n_common_genes": len(common), "units": {k: int(v.shape[1]) for k, v in Z.items()},
-            "calibration_pairs": {k: len(v) for k, v in calib.items()}, "validation": vres, "z_match": Z_MATCH},
-           RES / "identity_validation.json")
-new = M[(M.z >= Z_MATCH) & ~M.same_metadata_donor]
-print("\nmatches z>=%.0f not explained by within-series metadata donor keys, by series pair:" % Z_MATCH)
-print(new.groupby(["gse_a", "gse_b"]).agg(n=("r", "size"), dx_agree=("dx_agree", "sum"), median_z=("z", "median")).to_string())
+            "calibration_pairs": {k: len(v) for k, v in calib.items()}, "calibration_recovery": cal_rec, "n_pc_removed": N_PC,
+            "validation": vres, "z_match": Z_MATCH, "z_probable": Z_PROBABLE,
+            "negative_control": {"n_hits": int(len(neg)), "max_z": float(neg.z.max()), "p99_z": float(np.percentile(neg.z, 99))}}, RES / f"identity_validation_pc{N_PC}.json")
+M["tier"] = np.where(M.z >= Z_MATCH, "match", np.where(M.z >= Z_PROBABLE, "probable", "none"))
+M.to_csv(RES / f"identity_matches_pc{N_PC}.tsv", sep="\t", index=False)
+new = M[(M.tier != "none") & ~M.same_metadata_donor]
+print("\nhits not explained by within-series metadata donor keys, by series pair and tier:")
+print(new.groupby(["gse_a", "gse_b", "tier"]).agg(n=("r", "size"), dx_agree=("dx_agree", "sum"), median_z=("z", "median")).to_string())

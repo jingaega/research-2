@@ -1,0 +1,8 @@
+{
+ "source": "STRING v12.0 9606 protein.links, combined_score>=700",
+ "n_nodes": 11955,
+ "n_edges": 153274,
+ "n_isolated_nodes": 1463,
+ "median_degree": 12.0,
+ "mean_degree": 25.641823504809704
+}

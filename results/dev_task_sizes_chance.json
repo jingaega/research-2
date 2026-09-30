@@ -1,0 +1,118 @@
+{
+ "A_SCZ_vs_CTL": {
+  "n": 268,
+  "by_cohort": {
+   "CharingCross": {
+    "CTL": 17,
+    "SCZ": 21
+   },
+   "Pittsburgh": {
+    "CTL": 27,
+    "SCZ": 11
+   },
+   "Pritzker": {
+    "CTL": 61,
+    "SCZ": 17
+   },
+   "Stanley": {
+    "CTL": 35,
+    "SCZ": 37
+   },
+   "Victoria": {
+    "CTL": 20,
+    "SCZ": 22
+   }
+  },
+  "uniform_random_macroF1": 0.494,
+  "prior_random_macroF1": 0.499,
+  "majority_class_macroF1": 0.374,
+  "class_priors": {
+   "CTL": 0.597,
+   "SCZ": 0.403
+  },
+  "mcc_chance": 0.0,
+  "auc_chance": 0.5
+ },
+ "A_BD_vs_CTL": {
+  "n": 185,
+  "by_cohort": {
+   "Pittsburgh": {
+    "BD": 13,
+    "CTL": 27
+   },
+   "Pritzker": {
+    "BD": 17,
+    "CTL": 61
+   },
+   "Stanley": {
+    "BD": 32,
+    "CTL": 35
+   }
+  },
+  "uniform_random_macroF1": 0.486,
+  "prior_random_macroF1": 0.5,
+  "majority_class_macroF1": 0.399,
+  "class_priors": {
+   "BD": 0.3351,
+   "CTL": 0.6649
+  },
+  "mcc_chance": 0.0,
+  "auc_chance": 0.5
+ },
+ "A_MDD_vs_CTL": {
+  "n": 192,
+  "by_cohort": {
+   "Pittsburgh": {
+    "CTL": 27,
+    "MDD": 28
+   },
+   "Pritzker": {
+    "CTL": 61,
+    "MDD": 30
+   },
+   "Stanley": {
+    "CTL": 35,
+    "MDD": 11
+   }
+  },
+  "uniform_random_macroF1": 0.49,
+  "prior_random_macroF1": 0.499,
+  "majority_class_macroF1": 0.39,
+  "class_priors": {
+   "CTL": 0.6406,
+   "MDD": 0.3594
+  },
+  "mcc_chance": 0.0,
+  "auc_chance": 0.5
+ },
+ "B_multiclass": {
+  "n": 196,
+  "by_cohort": {
+   "Pittsburgh": {
+    "BD": 13,
+    "MDD": 28,
+    "SCZ": 11
+   },
+   "Pritzker": {
+    "BD": 17,
+    "MDD": 30,
+    "SCZ": 17
+   },
+   "Stanley": {
+    "BD": 32,
+    "MDD": 11,
+    "SCZ": 37
+   }
+  },
+  "uniform_random_macroF1": 0.333,
+  "prior_random_macroF1": 0.333,
+  "majority_class_macroF1": 0.174,
+  "class_priors": {
+   "BD": 0.3163,
+   "MDD": 0.352,
+   "SCZ": 0.3316
+  },
+  "mcc_chance": 0.0,
+  "auc_chance": 0.5
+ }
+}

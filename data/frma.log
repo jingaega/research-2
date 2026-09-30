@@ -29,3 +29,373 @@ The following objects are masked from 'package:hgu133plus2cdf':
     i2xy, xy2i
 
    HG-U133A 1 - 40 
+   HG-U133A 41 - 80 
+   HG-U133A 81 - 102 
+  wrote data/frma/GSE12649__HG-U133A.tsv.gz 22283 102 
+GSE53987 CELs: 205 chip types: HG-U133_Plus_2 205 
+   HG-U133_Plus_2 1 - 40 
+   HG-U133_Plus_2 41 - 80 
+   HG-U133_Plus_2 81 - 120 
+   HG-U133_Plus_2 121 - 160 
+   HG-U133_Plus_2 161 - 200 
+   HG-U133_Plus_2 201 - 205 
+  wrote data/frma/GSE53987__HG-U133_Plus_2.tsv.gz 54675 205 
+GSE92538 CELs: 363 chip types: HG-U133A 235; HG-U133_Plus_2 128 
+   HG-U133_Plus_2 1 - 40 
+   HG-U133_Plus_2 41 - 80 
+   HG-U133_Plus_2 81 - 120 
+   HG-U133_Plus_2 121 - 128 
+  wrote data/frma/GSE92538__HG-U133_Plus_2.tsv.gz 54675 128 
+   HG-U133A 1 - 40 
+   HG-U133A 41 - 80 
+   HG-U133A 81 - 120 
+   HG-U133A 121 - 160 
+   HG-U133A 161 - 200 
+   HG-U133A 201 - 235 
+  wrote data/frma/GSE92538__HG-U133A.tsv.gz 22283 235 
+GSE35978 CELs: 312 chip types: HuGene-1_0-st-v1 312 
+Loading required package: pd.hugene.1.0.st.v1
+Loading required package: RSQLite
+Loading required package: DBI
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878214.CEL.gz
+Reading in : data/raw/GSE35978/GSM878215.CEL.gz
+Reading in : data/raw/GSE35978/GSM878216.CEL.gz
+Reading in : data/raw/GSE35978/GSM878217.CEL.gz
+Reading in : data/raw/GSE35978/GSM878218.CEL.gz
+Reading in : data/raw/GSE35978/GSM878219.CEL.gz
+Reading in : data/raw/GSE35978/GSM878220.CEL.gz
+Reading in : data/raw/GSE35978/GSM878221.CEL.gz
+Reading in : data/raw/GSE35978/GSM878222.CEL.gz
+Reading in : data/raw/GSE35978/GSM878223.CEL.gz
+Reading in : data/raw/GSE35978/GSM878224.CEL.gz
+Reading in : data/raw/GSE35978/GSM878225.CEL.gz
+Reading in : data/raw/GSE35978/GSM878226.CEL.gz
+Reading in : data/raw/GSE35978/GSM878227.CEL.gz
+Reading in : data/raw/GSE35978/GSM878228.CEL.gz
+Reading in : data/raw/GSE35978/GSM878229.CEL.gz
+Reading in : data/raw/GSE35978/GSM878230.CEL.gz
+Reading in : data/raw/GSE35978/GSM878231.CEL.gz
+Reading in : data/raw/GSE35978/GSM878232.CEL.gz
+Reading in : data/raw/GSE35978/GSM878233.CEL.gz
+Reading in : data/raw/GSE35978/GSM878234.CEL.gz
+Reading in : data/raw/GSE35978/GSM878235.CEL.gz
+Reading in : data/raw/GSE35978/GSM878236.CEL.gz
+Reading in : data/raw/GSE35978/GSM878237.CEL.gz
+Reading in : data/raw/GSE35978/GSM878238.CEL.gz
+Reading in : data/raw/GSE35978/GSM878239.CEL.gz
+Reading in : data/raw/GSE35978/GSM878240.CEL.gz
+Reading in : data/raw/GSE35978/GSM878241.CEL.gz
+Reading in : data/raw/GSE35978/GSM878242.CEL.gz
+Reading in : data/raw/GSE35978/GSM878243.CEL.gz
+Reading in : data/raw/GSE35978/GSM878244.CEL.gz
+Reading in : data/raw/GSE35978/GSM878245.CEL.gz
+Reading in : data/raw/GSE35978/GSM878246.CEL.gz
+Reading in : data/raw/GSE35978/GSM878247.CEL.gz
+Reading in : data/raw/GSE35978/GSM878248.CEL.gz
+Reading in : data/raw/GSE35978/GSM878249.CEL.gz
+Reading in : data/raw/GSE35978/GSM878250.CEL.gz
+Reading in : data/raw/GSE35978/GSM878251.CEL.gz
+Reading in : data/raw/GSE35978/GSM878252.CEL.gz
+Reading in : data/raw/GSE35978/GSM878253.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 1 - 40 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878254.CEL.gz
+Reading in : data/raw/GSE35978/GSM878255.CEL.gz
+Reading in : data/raw/GSE35978/GSM878256.CEL.gz
+Reading in : data/raw/GSE35978/GSM878257.CEL.gz
+Reading in : data/raw/GSE35978/GSM878258.CEL.gz
+Reading in : data/raw/GSE35978/GSM878259.CEL.gz
+Reading in : data/raw/GSE35978/GSM878260.CEL.gz
+Reading in : data/raw/GSE35978/GSM878261.CEL.gz
+Reading in : data/raw/GSE35978/GSM878262.CEL.gz
+Reading in : data/raw/GSE35978/GSM878263.CEL.gz
+Reading in : data/raw/GSE35978/GSM878264.CEL.gz
+Reading in : data/raw/GSE35978/GSM878265.CEL.gz
+Reading in : data/raw/GSE35978/GSM878266.CEL.gz
+Reading in : data/raw/GSE35978/GSM878267.CEL.gz
+Reading in : data/raw/GSE35978/GSM878268.CEL.gz
+Reading in : data/raw/GSE35978/GSM878269.CEL.gz
+Reading in : data/raw/GSE35978/GSM878270.CEL.gz
+Reading in : data/raw/GSE35978/GSM878271.CEL.gz
+Reading in : data/raw/GSE35978/GSM878272.CEL.gz
+Reading in : data/raw/GSE35978/GSM878273.CEL.gz
+Reading in : data/raw/GSE35978/GSM878274.CEL.gz
+Reading in : data/raw/GSE35978/GSM878275.CEL.gz
+Reading in : data/raw/GSE35978/GSM878276.CEL.gz
+Reading in : data/raw/GSE35978/GSM878277.CEL.gz
+Reading in : data/raw/GSE35978/GSM878278.CEL.gz
+Reading in : data/raw/GSE35978/GSM878279.CEL.gz
+Reading in : data/raw/GSE35978/GSM878280.CEL.gz
+Reading in : data/raw/GSE35978/GSM878281.CEL.gz
+Reading in : data/raw/GSE35978/GSM878282.CEL.gz
+Reading in : data/raw/GSE35978/GSM878283.CEL.gz
+Reading in : data/raw/GSE35978/GSM878284.CEL.gz
+Reading in : data/raw/GSE35978/GSM878285.CEL.gz
+Reading in : data/raw/GSE35978/GSM878286.CEL.gz
+Reading in : data/raw/GSE35978/GSM878287.CEL.gz
+Reading in : data/raw/GSE35978/GSM878288.CEL.gz
+Reading in : data/raw/GSE35978/GSM878289.CEL.gz
+Reading in : data/raw/GSE35978/GSM878290.CEL.gz
+Reading in : data/raw/GSE35978/GSM878291.CEL.gz
+Reading in : data/raw/GSE35978/GSM878292.CEL.gz
+Reading in : data/raw/GSE35978/GSM878293.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 41 - 80 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878294.CEL.gz
+Reading in : data/raw/GSE35978/GSM878295.CEL.gz
+Reading in : data/raw/GSE35978/GSM878296.CEL.gz
+Reading in : data/raw/GSE35978/GSM878297.CEL.gz
+Reading in : data/raw/GSE35978/GSM878298.CEL.gz
+Reading in : data/raw/GSE35978/GSM878299.CEL.gz
+Reading in : data/raw/GSE35978/GSM878300.CEL.gz
+Reading in : data/raw/GSE35978/GSM878301.CEL.gz
+Reading in : data/raw/GSE35978/GSM878302.CEL.gz
+Reading in : data/raw/GSE35978/GSM878303.CEL.gz
+Reading in : data/raw/GSE35978/GSM878304.CEL.gz
+Reading in : data/raw/GSE35978/GSM878305.CEL.gz
+Reading in : data/raw/GSE35978/GSM878306.CEL.gz
+Reading in : data/raw/GSE35978/GSM878307.CEL.gz
+Reading in : data/raw/GSE35978/GSM878308.CEL.gz
+Reading in : data/raw/GSE35978/GSM878309.CEL.gz
+Reading in : data/raw/GSE35978/GSM878310.CEL.gz
+Reading in : data/raw/GSE35978/GSM878311.CEL.gz
+Reading in : data/raw/GSE35978/GSM878312.CEL.gz
+Reading in : data/raw/GSE35978/GSM878313.CEL.gz
+Reading in : data/raw/GSE35978/GSM878314.CEL.gz
+Reading in : data/raw/GSE35978/GSM878315.CEL.gz
+Reading in : data/raw/GSE35978/GSM878316.CEL.gz
+Reading in : data/raw/GSE35978/GSM878317.CEL.gz
+Reading in : data/raw/GSE35978/GSM878318.CEL.gz
+Reading in : data/raw/GSE35978/GSM878319.CEL.gz
+Reading in : data/raw/GSE35978/GSM878320.CEL.gz
+Reading in : data/raw/GSE35978/GSM878321.CEL.gz
+Reading in : data/raw/GSE35978/GSM878322.CEL.gz
+Reading in : data/raw/GSE35978/GSM878323.CEL.gz
+Reading in : data/raw/GSE35978/GSM878324.CEL.gz
+Reading in : data/raw/GSE35978/GSM878325.CEL.gz
+Reading in : data/raw/GSE35978/GSM878326.CEL.gz
+Reading in : data/raw/GSE35978/GSM878327.CEL.gz
+Reading in : data/raw/GSE35978/GSM878328.CEL.gz
+Reading in : data/raw/GSE35978/GSM878329.CEL.gz
+Reading in : data/raw/GSE35978/GSM878330.CEL.gz
+Reading in : data/raw/GSE35978/GSM878331.CEL.gz
+Reading in : data/raw/GSE35978/GSM878332.CEL.gz
+Reading in : data/raw/GSE35978/GSM878333.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 81 - 120 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878334.CEL.gz
+Reading in : data/raw/GSE35978/GSM878335.CEL.gz
+Reading in : data/raw/GSE35978/GSM878336.CEL.gz
+Reading in : data/raw/GSE35978/GSM878337.CEL.gz
+Reading in : data/raw/GSE35978/GSM878338.CEL.gz
+Reading in : data/raw/GSE35978/GSM878339.CEL.gz
+Reading in : data/raw/GSE35978/GSM878340.CEL.gz
+Reading in : data/raw/GSE35978/GSM878341.CEL.gz
+Reading in : data/raw/GSE35978/GSM878342.CEL.gz
+Reading in : data/raw/GSE35978/GSM878343.CEL.gz
+Reading in : data/raw/GSE35978/GSM878344.CEL.gz
+Reading in : data/raw/GSE35978/GSM878345.CEL.gz
+Reading in : data/raw/GSE35978/GSM878346.CEL.gz
+Reading in : data/raw/GSE35978/GSM878347.CEL.gz
+Reading in : data/raw/GSE35978/GSM878348.CEL.gz
+Reading in : data/raw/GSE35978/GSM878349.CEL.gz
+Reading in : data/raw/GSE35978/GSM878350.CEL.gz
+Reading in : data/raw/GSE35978/GSM878351.CEL.gz
+Reading in : data/raw/GSE35978/GSM878352.CEL.gz
+Reading in : data/raw/GSE35978/GSM878353.CEL.gz
+Reading in : data/raw/GSE35978/GSM878354.CEL.gz
+Reading in : data/raw/GSE35978/GSM878355.CEL.gz
+Reading in : data/raw/GSE35978/GSM878356.CEL.gz
+Reading in : data/raw/GSE35978/GSM878357.CEL.gz
+Reading in : data/raw/GSE35978/GSM878376.CEL.gz
+Reading in : data/raw/GSE35978/GSM878377.CEL.gz
+Reading in : data/raw/GSE35978/GSM878378.CEL.gz
+Reading in : data/raw/GSE35978/GSM878379.CEL.gz
+Reading in : data/raw/GSE35978/GSM878380.CEL.gz
+Reading in : data/raw/GSE35978/GSM878381.CEL.gz
+Reading in : data/raw/GSE35978/GSM878382.CEL.gz
+Reading in : data/raw/GSE35978/GSM878383.CEL.gz
+Reading in : data/raw/GSE35978/GSM878384.CEL.gz
+Reading in : data/raw/GSE35978/GSM878385.CEL.gz
+Reading in : data/raw/GSE35978/GSM878386.CEL.gz
+Reading in : data/raw/GSE35978/GSM878387.CEL.gz
+Reading in : data/raw/GSE35978/GSM878388.CEL.gz
+Reading in : data/raw/GSE35978/GSM878389.CEL.gz
+Reading in : data/raw/GSE35978/GSM878390.CEL.gz
+Reading in : data/raw/GSE35978/GSM878391.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 121 - 160 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878392.CEL.gz
+Reading in : data/raw/GSE35978/GSM878393.CEL.gz
+Reading in : data/raw/GSE35978/GSM878394.CEL.gz
+Reading in : data/raw/GSE35978/GSM878395.CEL.gz
+Reading in : data/raw/GSE35978/GSM878396.CEL.gz
+Reading in : data/raw/GSE35978/GSM878397.CEL.gz
+Reading in : data/raw/GSE35978/GSM878398.CEL.gz
+Reading in : data/raw/GSE35978/GSM878399.CEL.gz
+Reading in : data/raw/GSE35978/GSM878400.CEL.gz
+Reading in : data/raw/GSE35978/GSM878401.CEL.gz
+Reading in : data/raw/GSE35978/GSM878402.CEL.gz
+Reading in : data/raw/GSE35978/GSM878403.CEL.gz
+Reading in : data/raw/GSE35978/GSM878404.CEL.gz
+Reading in : data/raw/GSE35978/GSM878405.CEL.gz
+Reading in : data/raw/GSE35978/GSM878406.CEL.gz
+Reading in : data/raw/GSE35978/GSM878407.CEL.gz
+Reading in : data/raw/GSE35978/GSM878408.CEL.gz
+Reading in : data/raw/GSE35978/GSM878409.CEL.gz
+Reading in : data/raw/GSE35978/GSM878410.CEL.gz
+Reading in : data/raw/GSE35978/GSM878411.CEL.gz
+Reading in : data/raw/GSE35978/GSM878412.CEL.gz
+Reading in : data/raw/GSE35978/GSM878413.CEL.gz
+Reading in : data/raw/GSE35978/GSM878414.CEL.gz
+Reading in : data/raw/GSE35978/GSM878415.CEL.gz
+Reading in : data/raw/GSE35978/GSM878416.CEL.gz
+Reading in : data/raw/GSE35978/GSM878417.CEL.gz
+Reading in : data/raw/GSE35978/GSM878418.CEL.gz
+Reading in : data/raw/GSE35978/GSM878419.CEL.gz
+Reading in : data/raw/GSE35978/GSM878420.CEL.gz
+Reading in : data/raw/GSE35978/GSM878421.CEL.gz
+Reading in : data/raw/GSE35978/GSM878422.CEL.gz
+Reading in : data/raw/GSE35978/GSM878423.CEL.gz
+Reading in : data/raw/GSE35978/GSM878424.CEL.gz
+Reading in : data/raw/GSE35978/GSM878425.CEL.gz
+Reading in : data/raw/GSE35978/GSM878426.CEL.gz
+Reading in : data/raw/GSE35978/GSM878427.CEL.gz
+Reading in : data/raw/GSE35978/GSM878428.CEL.gz
+Reading in : data/raw/GSE35978/GSM878429.CEL.gz
+Reading in : data/raw/GSE35978/GSM878430.CEL.gz
+Reading in : data/raw/GSE35978/GSM878431.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 161 - 200 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878432.CEL.gz
+Reading in : data/raw/GSE35978/GSM878433.CEL.gz
+Reading in : data/raw/GSE35978/GSM878434.CEL.gz
+Reading in : data/raw/GSE35978/GSM878435.CEL.gz
+Reading in : data/raw/GSE35978/GSM878436.CEL.gz
+Reading in : data/raw/GSE35978/GSM878437.CEL.gz
+Reading in : data/raw/GSE35978/GSM878438.CEL.gz
+Reading in : data/raw/GSE35978/GSM878439.CEL.gz
+Reading in : data/raw/GSE35978/GSM878440.CEL.gz
+Reading in : data/raw/GSE35978/GSM878441.CEL.gz
+Reading in : data/raw/GSE35978/GSM878442.CEL.gz
+Reading in : data/raw/GSE35978/GSM878443.CEL.gz
+Reading in : data/raw/GSE35978/GSM878444.CEL.gz
+Reading in : data/raw/GSE35978/GSM878445.CEL.gz
+Reading in : data/raw/GSE35978/GSM878446.CEL.gz
+Reading in : data/raw/GSE35978/GSM878447.CEL.gz
+Reading in : data/raw/GSE35978/GSM878448.CEL.gz
+Reading in : data/raw/GSE35978/GSM878449.CEL.gz
+Reading in : data/raw/GSE35978/GSM878450.CEL.gz
+Reading in : data/raw/GSE35978/GSM878451.CEL.gz
+Reading in : data/raw/GSE35978/GSM878452.CEL.gz
+Reading in : data/raw/GSE35978/GSM878453.CEL.gz
+Reading in : data/raw/GSE35978/GSM878454.CEL.gz
+Reading in : data/raw/GSE35978/GSM878455.CEL.gz
+Reading in : data/raw/GSE35978/GSM878456.CEL.gz
+Reading in : data/raw/GSE35978/GSM878457.CEL.gz
+Reading in : data/raw/GSE35978/GSM878458.CEL.gz
+Reading in : data/raw/GSE35978/GSM878459.CEL.gz
+Reading in : data/raw/GSE35978/GSM878460.CEL.gz
+Reading in : data/raw/GSE35978/GSM878461.CEL.gz
+Reading in : data/raw/GSE35978/GSM878462.CEL.gz
+Reading in : data/raw/GSE35978/GSM878463.CEL.gz
+Reading in : data/raw/GSE35978/GSM878464.CEL.gz
+Reading in : data/raw/GSE35978/GSM878465.CEL.gz
+Reading in : data/raw/GSE35978/GSM878466.CEL.gz
+Reading in : data/raw/GSE35978/GSM878467.CEL.gz
+Reading in : data/raw/GSE35978/GSM878468.CEL.gz
+Reading in : data/raw/GSE35978/GSM878469.CEL.gz
+Reading in : data/raw/GSE35978/GSM878470.CEL.gz
+Reading in : data/raw/GSE35978/GSM878471.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 201 - 240 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878472.CEL.gz
+Reading in : data/raw/GSE35978/GSM878473.CEL.gz
+Reading in : data/raw/GSE35978/GSM878474.CEL.gz
+Reading in : data/raw/GSE35978/GSM878475.CEL.gz
+Reading in : data/raw/GSE35978/GSM878476.CEL.gz
+Reading in : data/raw/GSE35978/GSM878477.CEL.gz
+Reading in : data/raw/GSE35978/GSM878478.CEL.gz
+Reading in : data/raw/GSE35978/GSM878479.CEL.gz
+Reading in : data/raw/GSE35978/GSM878480.CEL.gz
+Reading in : data/raw/GSE35978/GSM878481.CEL.gz
+Reading in : data/raw/GSE35978/GSM878482.CEL.gz
+Reading in : data/raw/GSE35978/GSM878483.CEL.gz
+Reading in : data/raw/GSE35978/GSM878484.CEL.gz
+Reading in : data/raw/GSE35978/GSM878485.CEL.gz
+Reading in : data/raw/GSE35978/GSM878486.CEL.gz
+Reading in : data/raw/GSE35978/GSM878487.CEL.gz
+Reading in : data/raw/GSE35978/GSM878488.CEL.gz
+Reading in : data/raw/GSE35978/GSM878489.CEL.gz
+Reading in : data/raw/GSE35978/GSM878490.CEL.gz
+Reading in : data/raw/GSE35978/GSM878491.CEL.gz
+Reading in : data/raw/GSE35978/GSM878492.CEL.gz
+Reading in : data/raw/GSE35978/GSM878493.CEL.gz
+Reading in : data/raw/GSE35978/GSM878494.CEL.gz
+Reading in : data/raw/GSE35978/GSM878495.CEL.gz
+Reading in : data/raw/GSE35978/GSM878496.CEL.gz
+Reading in : data/raw/GSE35978/GSM878497.CEL.gz
+Reading in : data/raw/GSE35978/GSM878498.CEL.gz
+Reading in : data/raw/GSE35978/GSM878499.CEL.gz
+Reading in : data/raw/GSE35978/GSM878500.CEL.gz
+Reading in : data/raw/GSE35978/GSM878501.CEL.gz
+Reading in : data/raw/GSE35978/GSM878502.CEL.gz
+Reading in : data/raw/GSE35978/GSM878503.CEL.gz
+Reading in : data/raw/GSE35978/GSM878504.CEL.gz
+Reading in : data/raw/GSE35978/GSM878505.CEL.gz
+Reading in : data/raw/GSE35978/GSM878506.CEL.gz
+Reading in : data/raw/GSE35978/GSM878507.CEL.gz
+Reading in : data/raw/GSE35978/GSM878508.CEL.gz
+Reading in : data/raw/GSE35978/GSM878509.CEL.gz
+Reading in : data/raw/GSE35978/GSM878510.CEL.gz
+Reading in : data/raw/GSE35978/GSM878511.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 241 - 280 
+Platform design info loaded.
+Reading in : data/raw/GSE35978/GSM878512.CEL.gz
+Reading in : data/raw/GSE35978/GSM878513.CEL.gz
+Reading in : data/raw/GSE35978/GSM878514.CEL.gz
+Reading in : data/raw/GSE35978/GSM878515.CEL.gz
+Reading in : data/raw/GSE35978/GSM878516.CEL.gz
+Reading in : data/raw/GSE35978/GSM878517.CEL.gz
+Reading in : data/raw/GSE35978/GSM878518.CEL.gz
+Reading in : data/raw/GSE35978/GSM878519.CEL.gz
+Reading in : data/raw/GSE35978/GSM878520.CEL.gz
+Reading in : data/raw/GSE35978/GSM878521.CEL.gz
+Reading in : data/raw/GSE35978/GSM878522.CEL.gz
+Reading in : data/raw/GSE35978/GSM878523.CEL.gz
+Reading in : data/raw/GSE35978/GSM878524.CEL.gz
+Reading in : data/raw/GSE35978/GSM878525.CEL.gz
+Reading in : data/raw/GSE35978/GSM878526.CEL.gz
+Reading in : data/raw/GSE35978/GSM878527.CEL.gz
+Reading in : data/raw/GSE35978/GSM878528.CEL.gz
+Reading in : data/raw/GSE35978/GSM878529.CEL.gz
+Reading in : data/raw/GSE35978/GSM878530.CEL.gz
+Reading in : data/raw/GSE35978/GSM878531.CEL.gz
+Reading in : data/raw/GSE35978/GSM878532.CEL.gz
+Reading in : data/raw/GSE35978/GSM878533.CEL.gz
+Reading in : data/raw/GSE35978/GSM878534.CEL.gz
+Reading in : data/raw/GSE35978/GSM878535.CEL.gz
+Reading in : data/raw/GSE35978/GSM878536.CEL.gz
+Reading in : data/raw/GSE35978/GSM878537.CEL.gz
+Reading in : data/raw/GSE35978/GSM878538.CEL.gz
+Reading in : data/raw/GSE35978/GSM878539.CEL.gz
+Reading in : data/raw/GSE35978/GSM878540.CEL.gz
+Reading in : data/raw/GSE35978/GSM878541.CEL.gz
+Reading in : data/raw/GSE35978/GSM878542.CEL.gz
+Reading in : data/raw/GSE35978/GSM878543.CEL.gz
+Either probeVarWithin or probeVarBetween is 0 for some probes -- setting corresponding weights to 1
+   HuGene-1_0-st-v1 281 - 312 
+  wrote data/frma/GSE35978__HuGene-1_0-st-v1.tsv.gz 33297 312 
+Warning messages:
+1: replacing previous import 'AnnotationDbi::tail' by 'utils::tail' when loading 'hgu133plus2cdf' 
+2: replacing previous import 'AnnotationDbi::head' by 'utils::head' when loading 'hgu133plus2cdf' 
+3: replacing previous import 'AnnotationDbi::tail' by 'utils::tail' when loading 'hgu133acdf' 
+4: replacing previous import 'AnnotationDbi::head' by 'utils::head' when loading 'hgu133acdf' 
