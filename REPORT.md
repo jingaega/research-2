@@ -13,12 +13,12 @@ The generated tables are in `results/report_tables.md`.
    - On the same test donors a model that only knows *which cohort a donor came from* scores
      **0.618 [0.505–0.714]**. In CV the gap is not significant under the corrected test.
    - What distinguishes the expression models is **transfer**: they keep SCZ signal in 3 of 5 unseen
-     cohorts (macro-F1 0.66–0.74), while the study-only model collapses there (0.22–0.44).
+     cohorts (macro-F1 0.66–0.71 for V6b, 0.63–0.74 for V6a), while the study-only model collapses there (0.22–0.44).
 2. **BD vs control** reaches test macro-F1 0.636 [0.507–0.753], AUC 0.758, but **the signal depends on one
    cohort**. Without the Stanley donors, dev CV drops to chance (0.502 vs 0.486). In unseen cohorts it is
    at chance outside Pittsburgh.
 3. **MDD vs control** reaches test macro-F1 0.623 [0.494–0.749]; the CI touches chance. In unseen cohorts it
-   is at or below chance (0.44–0.53). **No transferable MDD signal.**
+   is at or below chance (0.41–0.53). **No transferable MDD signal.**
 4. **Task B (SCZ vs BD vs MDD) is at chance**: test macro-F1 0.367 [0.250–0.476] (chance 0.331). The
    study-only model gets 0.374. **These data cannot support discrimination between disorders.**
 5. **Graph structure does not help, for strong or weak contrasts.**
@@ -86,7 +86,7 @@ bootstraps over test donors (2,000 resamples).
 | | C1 | 0.374 [0.286, 0.456] | 0.646 | 0.379 ± 0.013 | 0.133, 0.140, 0.081 |
 
 - **Width of the test CIs.** The test set has 35 SCZ / 54 CTL, 23 BD / 41 CTL, 22 MDD / 41 CTL and
-  21 / 23 / 22 donors for Task B. Every test macro-F1 CI is about ±0.10–0.13 wide. The CIs of V6b, V6a
+  21 / 23 / 22 donors for Task B. Every test macro-F1 CI is about ±0.09–0.13 wide. The CIs of V6b, V6a
   and the study-only control overlap almost entirely on every task, so **the test set cannot rank these
   three**. It can say that SCZ and BD performance is above chance (the lower bound exceeds uniform
   chance), and that MDD and Task B are not clearly above chance.
@@ -98,7 +98,7 @@ bootstraps over test donors (2,000 resamples).
   - Task B test: BD recall is 0.17–0.22, and the errors are spread over all three classes, with no
     structure.
 - **Seed variance vs fold variance.** For the stochastic models: random forest has fold SD 0.056–0.074 and
-  seed SD 0.018–0.050. The random-graph controls have seed SD 0.006–0.029. Logistic regression is
+  seed SD 0.018–0.050. The random-graph and random-gene-set controls have seed SD 0.006–0.050. Logistic regression is
   deterministic (seed SD 0). Fold variance dominates everywhere.
 - **Selection optimism.** The bias-corrected CV estimate of the selected configuration is 0.571 (mean over
   tasks), against a raw 0.572 (`results/final_selection.json`). Choosing among nearly equal candidates cost
