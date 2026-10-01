@@ -23,7 +23,7 @@ for t in P.TASK_ORDER:
     k = M.iloc[tr].groupby("batch").dx.nunique(); complete = set(k[k == M.dx.nunique()].index)
     sub = M.iloc[te].batch.isin(complete).values
     res_t = {"n_train": int(len(tr)), "n_test": int(len(te)), "test_class_n": dte.dx.value_counts().to_dict(),
-             "test_cohort_dx": dte.groupby(["cohort", "dx"]).size().rename(lambda x: f"{x[0]}|{x[1]}").to_dict(),
+             "test_cohort_dx": {f"{c}|{d}": int(n) for (c, d), n in dte.groupby(["cohort", "dx"]).size().items()},
              "chance_test": chance_levels(dte.dx.values, dtr.dx.values, n_sim=5000), "models": {}}
     preds = {}
     for name, sp in FINAL.items():

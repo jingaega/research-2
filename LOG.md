@@ -512,3 +512,21 @@ over chance recovered):
    in batches that contain every class of the task (the C9 issue).
 5. V6b − V6a paired bootstrap difference on test (graph effect), with 95% CI.
 No second attempt, whatever the numbers.
+
+## 2026-10-01 — Locked test evaluation executed ONCE
+
+- The first execution fitted each frozen configuration once per task and cached its predictions
+  (`results/runs/FINAL_TEST_*`). It then crashed while writing the summary JSON (a tuple dict key,
+  `test_cohort_dx`).
+- After fixing that line, the script was re-run. `run_fold` loaded the cached predictions; **no model was
+  refitted and nothing changed**: the printed macro-F1 values are identical in both executions.
+
+## 2026-10-01 — FINAL LOCKED-TEST RESULTS (single evaluation; `results/final_test_results.json`)
+
+- A_SCZ_vs_CTL (test n=89, chance uniform 0.492): V6b 0.653 [0.543,0.750] AUC 0.703 | V6a 0.627 [0.518,0.724] AUC 0.719 | C1 0.618 [0.505,0.714] AUC 0.654; graph effect V6b−V6a +0.026 [-0.051,+0.101]
+- A_BD_vs_CTL (test n=64, chance uniform 0.488): V6b 0.636 [0.507,0.753] AUC 0.758 | V6a 0.623 [0.490,0.739] AUC 0.779 | C1 0.613 [0.484,0.729] AUC 0.624; graph effect V6b−V6a +0.013 [+0.000,+0.042]
+- A_MDD_vs_CTL (test n=63, chance uniform 0.487): V6b 0.623 [0.494,0.749] AUC 0.647 | V6a 0.610 [0.476,0.733] AUC 0.645 | C1 0.597 [0.472,0.721] AUC 0.628; graph effect V6b−V6a +0.013 [-0.028,+0.056]
+- B_multiclass (test n=66, chance uniform 0.331): V6b 0.367 [0.250,0.476] AUC 0.587 | V6a 0.398 [0.280,0.509] AUC 0.600 | C1 0.374 [0.286,0.456] AUC 0.646; graph effect V6b−V6a -0.031 [-0.090,+0.020]
+
+C7 for the final configurations (dev, BD without Stanley): V6a 0.501, V6b 0.502 (chance 0.486). The BD signal is Stanley-dependent.
+
