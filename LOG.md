@@ -172,3 +172,174 @@ platform and one region.
   recorded.
 - The class list, test split and audit are **unchanged**; nothing in the literature alters them.
 - Still no modeling. Awaiting approval.
+
+## 2026-09-30 — PLAN APPROVED by the user. Implementation notes (no results yet)
+
+- `scripts/pipeline.py` implements PLAN §5–7: identical folds for every configuration, in-fold batch
+  adjustment, in-fold transforms, and one JSON per (configuration, task, scheme, fold, seed) under
+  `results/runs/`, with skip-if-exists.
+- **Computational change, not a modeling change:** L2 logistic regression is fitted in the n-dimensional
+  row space of the training matrix (X·Vᵀ from its SVD). By the representer theorem this is exactly the same
+  model. Checked on one dev fold: max |Δ probability| = 3e-16 at C = 1e-4 and 7e-6 at C = 1 (optimiser
+  tolerance), for a 40× speed-up (43 s → 1 s per fold). No metric was computed in this check.
+- ComBat: neuroCombat 0.2.12 fit on training donors (diagnosis as protected covariate). The apply-to-new
+  step is re-implemented (same formula as neuroCombatFromTraining, which is marked "under development"):
+  test donors get the training batch's γ*/δ* and the training-average covariate term, so no test labels
+  are used.
+- Graph smoothing re-standardises the smoothed features on the training part. This is a no-op for the
+  no-graph baseline, and it removes the scale shrinkage of isolated genes (1,463 isolated in STRING).
+
+## 2026-09-30 — Controls C0 (no-structure baseline) and C1 (study-only): expectations stated before running
+
+- C0: per-batch standardisation → L2-LR (inner-CV C). Expectation: SCZ vs CTL modestly above chance
+  (macro-F1 roughly 0.55–0.65, from small effect sizes, Mistry 2013: ~15% changes). BD/MDD vs CTL and
+  Task B near chance.
+- C1 study-only (one-hot cohort → balanced LR). Expectation: close to chance in CV, because every task
+  cohort contributes both/all classes and folds are stratified by cohort. The cohort-conditional class
+  priors differ across cohorts, so it may beat uniform chance somewhat (for example Pritzker is 75%
+  CTL in the BD task). LOSO: an unseen cohort gets the global prior (≈ majority/balanced prediction).
+
+## 2026-09-30 — RESULT: C0 and C1 (controls)
+
+`results/summary/C0_baseline_LR.json`, `results/summary/C1_study_only.json`. CV = 5×5 donor-grouped
+folds; values are mean ± fold SD; LR is deterministic, so seed SD = 0.
+
+| Task | C0 macro-F1 | C1 study-only | Δ (C0−C1) | NB p (corr) | p (uncorr) | chance (uniform) |
+|---|---|---|---|---|---|---|
+| SCZ vs CTL | 0.649 ± 0.064 | 0.626 ± 0.013 | +0.023 | 0.548 | 0.114 | 0.494 |
+| BD vs CTL | 0.547 ± 0.068 | 0.596 ± 0.030 | −0.049 | 0.224 | 0.003 | 0.486 |
+| MDD vs CTL | 0.574 ± 0.080 | 0.595 ± 0.018 | −0.021 | 0.640 | 0.215 | 0.490 |
+| Task B | 0.445 ± 0.065 | 0.379 ± 0.013 | +0.066 | 0.078 | <0.001 | 0.333 |
+
+AUC Δ (C0−C1): SCZ +0.068 (corr p = 0.053), BD −0.057, MDD −0.010, Task B +0.011.
+
+**Interpretation.** The study-only model exploits differing class proportions across cohorts (e.g.
+Stanley ≈ 50% SCZ, Pritzker ≈ 22% SCZ). In CV, C0 does **not** significantly beat it on any task. This is
+the protocol's failure condition for "learned something beyond study composition". Leave-one-cohort-out
+separates them: C1 collapses on unseen cohorts (macro-F1 0.08–0.44), while C0 keeps SCZ signal in 3/5
+unseen cohorts (Pittsburgh 0.79, CharingCross 0.66, Victoria 0.66; Pritzker 0.52, Stanley 0.54). C0's
+per-batch standardisation deliberately removes cohort means, so it *cannot* use cohort priors. Its CV
+score is expression signal, but not more than the priors alone give.
+
+## 2026-09-30 — PRE-REGISTRATION V5 (variant 1/12): add-on ComBat instead of per-batch standardisation
+
+- Change: in-fold neuroCombat (parametric EB; diagnosis as protected covariate), applied to C0 now and to
+  the best graph model later (same variant, equal treatment).
+- Mechanism: EB shrinkage of batch location/scale (Johnson 2007) stabilises small batches.
+- Expectation: Δ macro-F1 vs C0 within ±0.02. Nygaard (2016) predicts that protected-covariate ComBat
+  over-separates classes *in-sample*. In-fold fitting should not carry that into held-out donors, but
+  preserved diagnosis effects in training could make training separation look larger than it transfers.
+- Failure: Δ ≤ 0 vs C0 (Nadeau–Bengio), or no gain beyond noise (|Δ| < 0.03).
+- The same runs double as the in-fold arm of leakage demo C4(ii); the all-data arm (ComBat fitted with
+  held-out labels) is the control.
+
+## 2026-10-01 — PRE-REGISTRATIONS V1, V2, V3 (variants 2, 3, 4 of 12), written before any graph run
+
+All three: same folds, per-batch standardisation and inner-CV L2-LR as C0. The no-graph ablation **is**
+C0. Each has a density-matched random control rebuilt per fold with 3 seeds (control, not counted).
+Comparisons use Nadeau–Bengio on the 25 fold-level differences, per task.
+
+**V1 STRING-smoothed features (curated graph).** X' = ½X + ½·D^-½AD^-½X over STRING v12 ≥ 700 (153,274
+edges), then training-fit re-standardisation and LR (SGC form, Wu 2019).
+- Mechanism: neighbourhood averaging reduces per-gene noise if disease effects are coordinated within
+  interaction modules (Chuang 2007).
+- Expectation: Δ vs C0 within ±0.02 on SCZ; if any gain, larger on BD/MDD/Task B (diffuse signal). Not
+  better than the random graph (Staiger 2012; Brouard 2024).
+- Failure: Δ vs C0 ≤ 0, or Δ vs random graph not significant (corr p ≥ 0.05), on a task.
+
+**V2 co-expression kNN graph (expression-derived).** k = 10 neighbours by |Pearson r| among training
+donors after batch standardisation, symmetrised; same smoothing. The random control matches V2's own
+edge count per fold.
+- Mechanism: data-driven modules (Chen 2013 found SCZ/BD signal in co-expression modules).
+- Expectation: ≈ C0. Its graph partly encodes cell-type composition axes (Hagenauer 2018), which may
+  help BD/SCZ slightly.
+- Failure: as V1.
+
+**V3 Reactome pathway scores (curated gene sets).** Mean of standardised genes per Reactome pathway
+(10–300 member genes in our feature set; 1,098 sets) replaces genes, then LR. Control: random gene sets
+with identical sizes, rebuilt per fold (3 seeds).
+- Mechanism: pathway-activity aggregation (Lee-type, evaluated in Staiger 2012).
+- Expectation: ≤ C0 on SCZ (information loss); possible small gain on weak tasks.
+- Failure: Δ vs C0 ≤ 0, or not better than random gene sets (corr p ≥ 0.05).
+
+**Conditional V4 (GCN)** runs only if V1 or V3 beats its random control with corrected p < 0.10 on any task
+(PLAN §7.2).
+
+## 2026-10-01 — RESULTS: V5 (ComBat), C4(ii) ComBat leakage demo, C7, C2
+
+**V5 add-on ComBat vs C0** (CV macro-F1; Δ; Nadeau–Bengio corrected p / uncorrected p):
+- SCZ 0.720 ± 0.064 vs 0.649: Δ +0.071, p 0.001 / <1e-4
+- BD 0.623 vs 0.547: Δ +0.076, p 0.021
+- MDD 0.577 vs 0.574: Δ +0.003, p 0.92
+- Task B 0.554 vs 0.445: Δ +0.109, p 0.003
+- LOSO: ComBat cannot adjust an unseen cohort (it falls back to self-standardisation), so LOSO is ≈ C0's
+  (SCZ: Pittsburgh 0.79, Victoria 0.63, CharingCross 0.55, Pritzker 0.52, Stanley 0.54).
+- **Against my pre-registered expectation (±0.02).**
+
+**C4(ii) ComBat fitted on ALL dev data with held-out labels** (the "leaky" arm) vs in-fold V5: SCZ 0.667
+(Δ −0.054, p 0.053), BD 0.554 (−0.069, p 0.017), MDD 0.522 (−0.055, p 0.057), Task B 0.485 (−0.069, p 0.045).
+**The leaky arm is LOWER than in-fold, the opposite of what a leakage demo should show.** Not
+understood yet; see the diagnostic below.
+
+**C7 single-study dependence.** Stanley supplies 51.6% of dev BD donors. Without Stanley (C0):
+- BD vs CTL 0.497 ± 0.083 (chance 0.486), versus 0.547 with Stanley. **The BD signal depends on the Stanley
+  cohort.**
+- Task B without Stanley: 0.511 ± 0.096.
+
+**C2 study-identity probe** (multinomial LR, 5×5 grouped CV, primary dev donors):
+- Cohort (5 classes): raw 1.000; after per-batch standardisation 0.101 (uniform chance 0.189, majority
+  0.095); after ComBat 0.212.
+- Batch (8 classes): raw 0.873; after per-batch standardisation 0.053 (chance 0.113); after ComBat 0.109.
+- Per-batch standardisation removes study identity entirely. ComBat leaves a little cohort information
+  (0.21 vs 0.19 chance).
+
+## 2026-10-01 — ADDED CONTROL C8 (not a variant): within-cohort label permutation
+
+Why: V5's large gain and the inverted leakage demo need a check that V5 is not exploiting cohort
+composition. ComBat preserves diagnosis effects when estimating batch effects, so a batch's residual
+mean keeps its case fraction × disease effect, and C2 shows cohort is weakly identifiable after ComBat.
+
+Test: permute diagnosis labels **within each cohort** (cohort × class counts preserved, expression–label
+link destroyed), 5 permutations × 5×5 CV, for C0 and V5. The study-only model keeps its full CV score under
+this permutation. A model that learns biology must drop to chance.
+
+Prediction if V5 is clean: both ≈ chance (≈ 0.49 binary, 0.33 Task B). If V5 stays clearly above chance,
+its CV gain is composition leakage and V5 is rejected as an evaluation artefact.
+
+## 2026-10-01 — Diagnosis of V5 / inverted leakage demo; C8 REVISED before any C8 result was read
+
+**One-fold diagnostic** (SCZ, folds r0f0–r0f4):
+- The two Sibille BA9 batches (GSE54567, GSE54568) contain **only controls** in the SCZ task. They enter
+  via the Pittsburgh cohort, which contributes SCZ through GSE53987.
+- With diagnosis as a protected covariate, ComBat aligns such a batch to the control mean, so held-out
+  donors of that batch get P(SCZ) ≈ 0.18–0.20 versus ≈ 0.40 for controls elsewhere.
+- More generally, ComBat's add-on step shifts every held-out donor by its batch's *training* class
+  composition × the estimated disease effect. This injects the cohort/batch prior into the features.
+  That is study-composition leakage: no held-out label is used, but batch priors learned from training
+  labels transfer.
+- The "all-data" leakage arm does the same, which is why it could not reveal the problem. Its lower
+  score is consistent with this (its batch estimates net out true test labels, so it injects less
+  composition shift into test donors).
+
+**Batches lacking a class, per task** (`results/task_batch_composition.json`):
+- SCZ and BD tasks: GSE54567 (6 CTL only) and GSE54568 (7 CTL only).
+- Task B: GSE54567 (10 MDD only) and GSE54568 (6 MDD only).
+- MDD task: none.
+- This matches the V5 pattern: big gains on SCZ, BD and Task B; none on MDD (+0.003).
+
+**My error (escalation, rule 13):** my task definition ("all CTL donors of cohorts contributing D")
+lets single-class *batches* into Tasks A-SCZ, A-BD and B, even though every cohort contributes both
+classes. The plan is kept as approved, and the issue is reported, not silently fixed.
+
+**C8 revised:** the first C8 launch (within-*cohort* permutation) was stopped and deleted after 0
+results were read. It would have mixed labels into the single-class batches and so destroyed exactly the
+shortcut under test, a false "clean" verdict. **C8 now permutes labels within BATCH**: batch × class
+counts are preserved, and the expression–label link is destroyed.
+- Prediction if V5 exploits composition: V5 stays near the study-only level (≈ 0.6 binary) under the
+  permutation, while C0 ≈ chance.
+- **Decision rule (fixed now):** if V5's permuted mean macro-F1 exceeds the uniform-chance level by
+  ≥ 0.03 on a task, V5's CV gain on that task is declared composition leakage, and V5 is not eligible as
+  a final model.
+
+**Added control C9:** C0 and V5 re-run on each task restricted to batches containing every class of the
+task. This is a sensitivity analysis, not a change to the primary tasks.

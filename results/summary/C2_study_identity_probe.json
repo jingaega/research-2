@@ -1,0 +1,48 @@
+{
+ "n_donors": 399,
+ "results": {
+  "cohort|none": {
+   "macro_f1_mean": 1.0,
+   "macro_f1_fold_sd": 0.0,
+   "chance_uniform": 0.18866141085142688,
+   "chance_majority": 0.09541984732824428,
+   "n_classes": 5
+  },
+  "cohort|bstd": {
+   "macro_f1_mean": 0.10118087713699829,
+   "macro_f1_fold_sd": 0.049201052292919274,
+   "chance_uniform": 0.18866141085142688,
+   "chance_majority": 0.09541984732824428,
+   "n_classes": 5
+  },
+  "cohort|combat": {
+   "macro_f1_mean": 0.2123373986573494,
+   "macro_f1_fold_sd": 0.045862500818896174,
+   "chance_uniform": 0.18866141085142688,
+   "chance_majority": 0.09541984732824428,
+   "n_classes": 5
+  },
+  "batch|none": {
+   "macro_f1_mean": 0.8731309523809524,
+   "macro_f1_fold_sd": 0.0545712828132143,
+   "chance_uniform": 0.11335733077545267,
+   "chance_majority": 0.055933852140077824,
+   "n_classes": 8
+  },
+  "batch|bstd": {
+   "macro_f1_mean": 0.052797772971113786,
+   "macro_f1_fold_sd": 0.034993472263364404,
+   "chance_uniform": 0.11335733077545267,
+   "chance_majority": 0.055933852140077824,
+   "n_classes": 8
+  },
+  "batch|combat": {
+   "macro_f1_mean": 0.10866946788336271,
+   "macro_f1_fold_sd": 0.03006081528220139,
+   "chance_uniform": 0.11335733077545267,
+   "chance_majority": 0.055933852140077824,
+   "n_classes": 8
+  }
+ },
+ "note": "adjustment fitted in-fold; test donors adjusted with their own (known) batch label, as in the pipeline"
+}
