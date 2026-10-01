@@ -439,3 +439,61 @@ unlikely at our sample sizes.
    labels say.
 4. Mistry 2013 (D2) and Gandal 2018 (D1) treat Stanley overlap as known. Neither the Lanz nor the Sibille
    papers read mention shared Pittsburgh donors, but our audit finds ≥ 20.
+
+## G. Targeted review: when graph models beat both ML and random graphs (2026-10-01, user request)
+
+Searches: S37 "graph neural network gene expression classification outperforms random network permuted graph
+ablation biological prior" (WebSearch, extended); S38 "P-NET biologically informed deep neural network prostate
+cancer Elmarakeby 2021 randomized connections comparison"; S39 "knowledge-primed neural networks Fortelny Bock 2020
+randomized network control interpretability"; S40 "when do gene networks help deep learning phenotype prediction sample
+size graph quality benchmark random graph control 2023 2024" (extended); S41 "reproducibility re-evaluation P-NET
+biologically informed neural network randomized pathway connections sparse random network performs similarly"
+(extended). Full texts via Europe PMC REST (fullTextXML) and arXiv PDF; passages grepped and read.
+
+**G1. Erion G, Janizek JD, Sturmfels P, Lundberg SM, Lee S-I. "Improving performance of deep learning models with
+axiomatic attribution priors and expected gradients." arXiv:1906.10670 (Nat Mach Intell 2021).** Full text read
+(gene-expression section). Graph attribution prior with a tissue-specific HumanBase network; AML drug response; the
+model "significantly outperforms all other methods" (R²). "When we replace the biological graph from HumanBase with
+a randomized graph, we find that the test performance is no better than the performance of a neural network trained
+without any attribution prior."
+
+**G2. "Prior knowledge informs graph neural networks to improve phenotype prediction from proteomics" (PMC12676398;
+preprint).** Full text read. UK Biobank proteomics; GO Molecular Function bipartite graphs. Outperforms linear and other
+deep models. Permuted controls preserve degree and capacity ("destroyed the correspondence between proteins and their
+true functional sets while preserving graph topology and model capacity"). The true graph beats the permuted one at
+the full training size and at 50% (11,715) and 25% (5,858).
+
+**G3. Fortelny N, Bock C (2020). "Knowledge-primed neural networks enable biologically interpretable deep learning on
+single-cell sequencing data." Genome Biol 21:190 (PMC7397672).** Full text read (control passages). "The control KPNNs
+generally showed reduced prediction performance compared to the TCR KPNN". The authors note "random edge shuffling
+alone is insufficient to purge all biological network structure from the control networks".
+
+**G4. "Unsupervised construction of computational graphs for gene expression data with explicit structural inductive
+biases" (GINCCo; Bioinformatics 2022; PMC8826027).** Full text read. METABRIC n = 1,980. Beats randomly connected
+computational graphs. Against SVM/FC-MLP the gains are "not significant … except on IC10 subtype prediction" (correlated
+t-test), with < 0.05% of the MLP's parameters.
+
+**G5. Elmarakeby HA, et al. (2021). "Biologically informed deep neural network for prostate cancer discovery."
+Nature 598:348–352 (PMC8514339).** Full text read (performance passages). n = 1,013. Beats SVM, LR, decision trees and
+a dense NN. The advantage over the dense NN was "statistically significant in smaller sample sizes (up to 500)". No
+random-sparse control in the original.
+
+**G6. "Sparsity is all you need: rethinking biologically informed neural networks." Brief Bioinform 27(4):bbag425
+(PMC13446513).** Abstract and results read. 29 pathway-informed networks with structure-matched randomization:
+"randomized models consistently match or outperform their biologically informed counterparts". "Performance gains …
+arise predominantly from sparsity-induced regularization rather than from biological knowledge itself". It reports
+P-NET 0.899 vs randomized 0.887–0.896 AUC (figures from the search summary; the PMC text was read for the conclusions).
+
+**G7. "Expanding P-NET, a multi-purpose biologically informed deep learning framework" (PMC13131806).** Methods read.
+It compares against a sparse network with randomly selected connections. Performance numbers were not extracted, so
+it is not relied on for effect sizes.
+
+**G8. "Gene expression inference based on graph neural networks using L1000 data" (PMC12161499).** Full text read
+(results). The GNN beats LR and MLP at inferring the transcriptome from landmarks, and needs ~10% of the input to match
+LR. "Its effectiveness largely depends on the graph structure". No random-graph control.
+
+**G9. Brouard et al. 2024 (B1), re-read for the conditions under which graphs helped.** "When this ground true network
+is used in graph-based models, it indeed improves the performance." On real BreastCancer data, "the complete network
+achieved better performance than networks based on biological knowledge".
+
+Synthesis: `GNN_SUCCESS_REVIEW.md`. Sources read now total **48**.

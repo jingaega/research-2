@@ -530,3 +530,14 @@ No second attempt, whatever the numbers.
 
 C7 for the final configurations (dev, BD without Stanley): V6a 0.501, V6b 0.502 (chance 0.486). The BD signal is Stanley-dependent.
 
+
+## 2026-10-01 — Targeted literature review on graph-model successes (user request; no new modeling)
+
+`GNN_SUCCESS_REVIEW.md` and LITERATURE.md §G (9 sources, 5 searches). Verdict:
+- Successes that beat both general ML **and** a random graph share four conditions: a graph aligned
+  with the label's mechanism, a context-specific network, a strong molecularly proximal signal and/or
+  large n, and a single-cohort evaluation.
+- Many claimed successes lack random controls, and a 29-model re-evaluation attributes most gains to sparsity.
+- Our setting met none of these conditions, so the null graph result is expected.
+- No change to results. Any follow-up graph analysis would be new, exploratory and pre-registered, because the
+  test set has been used.
