@@ -1,0 +1,8 @@
+C8_perm_C0 A_SCZ_vs_CTL macroF1 0.517 (perms [0.551 0.476 0.512 0.511 0.536]) AUC 0.540
+C8_perm_C0 A_BD_vs_CTL macroF1 0.497 (perms [0.508 0.5   0.45  0.491 0.536]) AUC 0.503
+C8_perm_C0 A_MDD_vs_CTL macroF1 0.500 (perms [0.454 0.51  0.491 0.563 0.482]) AUC 0.520
+C8_perm_C0 B_multiclass macroF1 0.348 (perms [0.343 0.378 0.363 0.34  0.315]) AUC 0.508
+C8_perm_V5 A_SCZ_vs_CTL macroF1 0.546 (perms [0.57  0.514 0.541 0.549 0.559]) AUC 0.574
+C8_perm_V5 A_BD_vs_CTL macroF1 0.547 (perms [0.552 0.537 0.534 0.525 0.589]) AUC 0.564
+C8_perm_V5 A_MDD_vs_CTL macroF1 0.514 (perms [0.476 0.529 0.517 0.554 0.495]) AUC 0.540
+C8_perm_V5 B_multiclass macroF1 0.409 (perms [0.416 0.456 0.418 0.405 0.349]) AUC 0.569

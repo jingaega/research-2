@@ -158,6 +158,22 @@ def reactome_sets(genes):
         _PW["sets"] = sets
     return _PW["sets"]
 
+def celltype_sets(genes):
+    """BrainInABlender (Hagenauer 2018) marker database: genes per CellType_Primary, human symbols mapped to Entrez;
+    genes listed for >1 primary cell type dropped; >= 5 genes per set. Simplification vs Sir_UnMixALot: equal weight per
+    gene (not per-publication averaging)."""
+    if "ct" not in _PW:
+        from common import symbols
+        mk = pd.read_csv(DATA / "knowledge" / "BrainInABlender_markers.tsv", sep="\t", dtype=str)
+        s2e = symbols().reset_index().dropna(subset=["SYMBOL"]).drop_duplicates("SYMBOL").set_index("SYMBOL")["ENTREZID"]
+        mk["entrez"] = mk.GeneSymbol_Human.map(s2e)
+        mk = mk.dropna(subset=["entrez"]).drop_duplicates(["entrez", "CellType_Primary"])
+        multi = mk.groupby("entrez").CellType_Primary.nunique(); mk = mk[mk.entrez.map(multi) == 1]
+        gi = {g: i for i, g in enumerate(genes)}
+        sets = {ct: np.array(sorted({gi[g] for g in grp.entrez if g in gi})) for ct, grp in mk.groupby("CellType_Primary")}
+        _PW["ct"] = {k: v for k, v in sets.items() if len(v) >= 5}
+    return _PW["ct"]
+
 def set_scores(Xtr, Xte, sets):
     M = np.stack([Xtr[:, s].mean(1) for s in sets.values()], 1); N = np.stack([Xte[:, s].mean(1) for s in sets.values()], 1)
     mu, sd = M.mean(0), M.std(0) + 1e-6
@@ -227,6 +243,11 @@ def run_fold(config, spec, task, scheme, fold_id, tr, te, X, meta, seed, tag="")
             Xtr, Xte = smooth(Xtr, Xte, norm_adj(E, n), spec.get("alpha", 0.5))
         elif tf in ("reactome", "reactome_random"):
             sets = reactome_sets(list(X.columns))
+            if tf.endswith("random"): sets = random_sets(sets, X.shape[1], hash_seed(config, task, fold_id, seed))
+            info["n_sets"] = len(sets)
+            Xtr, Xte = set_scores(Xtr, Xte, sets)
+        elif tf in ("celltype", "celltype_random"):
+            sets = celltype_sets(list(X.columns))
             if tf.endswith("random"): sets = random_sets(sets, X.shape[1], hash_seed(config, task, fold_id, seed))
             info["n_sets"] = len(sets)
             Xtr, Xte = set_scores(Xtr, Xte, sets)

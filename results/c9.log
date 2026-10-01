@@ -1,0 +1,20 @@
+A_SCZ_vs_CTL dropping 13 donors from batches ['GSE54567', 'GSE54568']
+A_BD_vs_CTL dropping 13 donors from batches ['GSE54567', 'GSE54568']
+A_MDD_vs_CTL dropping 0 donors from batches []
+B_multiclass dropping 16 donors from batches ['GSE54567', 'GSE54568']
+C9_C0_completebatches
+           task     cv_macroF1  seed_sd  cv_MCC  cv_AUC  chance_uniform                                                                                          LOSO_macroF1
+0  A_SCZ_vs_CTL  0.659 ± 0.066      0.0   0.327   0.731           0.494  {'CharingCross': 0.631, 'Pittsburgh': 0.917, 'Pritzker': 0.567, 'Stanley': 0.591, 'Victoria': 0.689}
+1   A_BD_vs_CTL  0.540 ± 0.102      0.0   0.090   0.591           0.486                                             {'Pittsburgh': 0.727, 'Pritzker': 0.48, 'Stanley': 0.512}
+2  A_MDD_vs_CTL  0.574 ± 0.080      0.0   0.170   0.605           0.490                                             {'Pittsburgh': 0.47, 'Pritzker': 0.403, 'Stanley': 0.435}
+3  B_multiclass  0.508 ± 0.061      0.0   0.281   0.708           0.333                                             {'Pittsburgh': 0.584, 'Pritzker': 0.451, 'Stanley': 0.32}
+C9_V5_completebatches
+           task     cv_macroF1  seed_sd  cv_MCC  cv_AUC  chance_uniform                                                                                          LOSO_macroF1
+0  A_SCZ_vs_CTL  0.706 ± 0.071      0.0   0.423   0.781           0.494  {'CharingCross': 0.545, 'Pittsburgh': 0.917, 'Pritzker': 0.523, 'Stanley': 0.603, 'Victoria': 0.689}
+1   A_BD_vs_CTL  0.594 ± 0.095      0.0   0.198   0.646           0.486                                             {'Pittsburgh': 0.727, 'Pritzker': 0.49, 'Stanley': 0.549}
+2  A_MDD_vs_CTL  0.577 ± 0.073      0.0   0.184   0.615           0.490                                            {'Pittsburgh': 0.492, 'Pritzker': 0.396, 'Stanley': 0.435}
+3  B_multiclass  0.540 ± 0.061      0.0   0.327   0.726           0.333                                            {'Pittsburgh': 0.611, 'Pritzker': 0.392, 'Stanley': 0.331}
+A_SCZ_vs_CTL V5-C0 on complete batches: Δ +0.047 p_corr 0.049 p_unc 0.0000
+A_BD_vs_CTL V5-C0 on complete batches: Δ +0.054 p_corr 0.053 p_unc 0.0000
+A_MDD_vs_CTL V5-C0 on complete batches: Δ +0.003 p_corr 0.923 p_unc 0.7960
+B_multiclass V5-C0 on complete batches: Δ +0.032 p_corr 0.139 p_unc 0.0004

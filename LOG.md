@@ -343,3 +343,172 @@ counts are preserved, and the expression–label link is destroyed.
 
 **Added control C9:** C0 and V5 re-run on each task restricted to batches containing every class of the
 task. This is a sensitivity analysis, not a change to the primary tasks.
+
+## 2026-10-01 — RESULT C8 (within-batch label permutation null; 5 permutations × 5×5 CV)
+
+| Task | uniform chance | C0 permuted | V5 permuted | V5 − chance | C0 real | V5 real |
+|---|---|---|---|---|---|---|
+| SCZ vs CTL | 0.494 | 0.517 | 0.546 | +0.052 | 0.649 | 0.720 |
+| BD vs CTL | 0.486 | 0.497 | 0.547 | +0.061 | 0.547 | 0.623 |
+| MDD vs CTL | 0.490 | 0.500 | 0.514 | +0.024 | 0.574 | 0.577 |
+| Task B | 0.333 | 0.348 | 0.409 | +0.076 | 0.445 | 0.554 |
+
+- C0 is at chance under the null (largest excess +0.023 on SCZ). Its pipeline does not exploit batch
+  composition.
+- **V5 stays above chance by ≥ 0.03 on SCZ, BD and Task B → by the pre-fixed rule, V5's CV gain is
+  declared composition leakage; V5 is NOT eligible as a final model** (variant 1/12 counted, outcome:
+  failed / invalid).
+- Nuance (reported, not used to rescue V5): on real labels V5 exceeds its own null by more than C0 exceeds
+  its own (SCZ +0.174 vs +0.132; Task B +0.145 vs +0.097). Part of ComBat's gain may be the legitimate
+  mechanism: it does not remove disease signal from batches with unequal case fractions, which per-batch
+  standardisation does. The two parts cannot be separated with these data.
+- Methodological finding: **add-on ComBat with diagnosis as a protected covariate transfers batch class
+  composition from training labels into held-out donors.** The protocol's "in-fold" requirement is met
+  and no held-out label is used, yet the CV estimate is still inflated. The usual leakage demo
+  (fit on all data vs in-fold) cannot detect this, because both arms share it.
+
+## 2026-10-01 — RESULT C9 (tasks restricted to batches containing every class)
+
+Dropped: 13 Sibille CTL-only donors (SCZ and BD tasks) and 16 Sibille MDD-only donors (Task B). MDD task
+unchanged.
+
+| Task | C0 primary | C0 complete-batches | V5 complete-batches | Δ V5−C0 (corr p) |
+|---|---|---|---|---|
+| SCZ | 0.649 | 0.659 ± 0.066 | 0.706 ± 0.071 | +0.047 (0.049) |
+| BD | 0.547 | 0.540 ± 0.102 | 0.594 ± 0.095 | +0.054 (0.053) |
+| MDD | 0.574 | 0.574 | 0.577 | +0.003 (0.92) |
+| Task B | 0.445 | 0.508 ± 0.061 | 0.540 ± 0.061 | +0.032 (0.139) |
+
+- Single-class batches **hurt C0** (per-batch centring of an MDD-only batch makes those donors look
+  average; Task B C0 0.445 → 0.508 without them) and **inflate V5**.
+- Removing them roughly halves V5's advantage. The remainder is still partly the mixed-batch composition
+  shift shown by C8.
+- **Escalation (rule 13):** the approved task definition admits single-class batches. I am following the
+  approved plan (primary = as defined); C9 is reported alongside every primary number as the
+  sensitivity analysis. In my judgement, the complete-batch tasks are the better-posed versions of Tasks
+  A-SCZ, A-BD and B.
+
+## 2026-10-01 — RESULTS V1, V2, V3 (graph variants; base = per-batch standardisation; no-graph = C0)
+
+CV macro-F1 (mean ± fold SD; seed SD for random controls):
+
+| Task | C0 no-graph | V1 STRING | V1 random (seed SD) | V2 coexpr | V2 random | V3 Reactome | V3 random sets |
+|---|---|---|---|---|---|---|---|
+| SCZ | 0.649 | 0.649 ± 0.067 | 0.652 (0.006) | 0.645 | 0.653 (0.009) | 0.597 | 0.645 (0.026) |
+| BD | 0.547 | 0.543 | 0.543 (0.018) | 0.540 | 0.541 (0.016) | 0.524 | 0.509 (0.050) |
+| MDD | 0.574 | 0.565 | 0.569 (0.024) | 0.551 | 0.566 (0.029) | 0.539 | 0.547 (0.041) |
+| Task B | 0.445 | 0.442 | 0.446 (0.024) | 0.436 | 0.445 (0.026) | 0.377 | 0.408 (0.049) |
+
+Nadeau–Bengio (25 fold differences; corrected p / uncorrected p):
+- V1 vs no-graph: Δ −0.000 / −0.004 / −0.009 / −0.003 (SCZ/BD/MDD/B), all p_corr ≥ 0.52. V1 vs random:
+  |Δ| ≤ 0.004, all p_corr ≥ 0.66.
+- V2 vs no-graph: Δ −0.004 / −0.007 / −0.023 / −0.009, p_corr ≥ 0.27. V2 vs random: Δ −0.008 / −0.000 /
+  −0.015 / −0.009.
+- V3 vs no-graph: Δ −0.052 (p 0.16; unc 0.001) / −0.023 / −0.035 / −0.068 (p 0.070; unc <0.001). V3 vs
+  random sets: −0.049 / +0.015 / −0.007 / −0.031, all p_corr ≥ 0.11.
+
+**Verdicts (pre-registered failure criteria):**
+- **V1 FAILED, V2 FAILED, V3 FAILED** on every task.
+- No graph beats its density-matched random control; random gene sets beat Reactome on 3/4 tasks.
+- **V4 (GCN) is NOT triggered** (condition: V1 or V3 beats its random control with corr p < 0.10 on any
+  task; none did).
+- Central question: graph − no-graph is ≈ 0 on the strong contrast (SCZ: −0.000) and ≈ 0 on the weak ones
+  (Task B: −0.003 STRING). No difference by signal strength for STRING or co-expression. Pathway
+  aggregation loses more on the weakest task (Task B −0.068) than on SCZ (−0.052). That is the opposite of
+  the "graphs help weak signal" hypothesis, but it is not significant under the corrected test.
+- Running variant count: **4 / 12** (V5, V1, V2, V3).
+
+## 2026-10-01 — PRE-REGISTRATIONS V6, V7, V8 (variants 5, 6, 7 of 12)
+
+- **V6 in-fold ANOVA-F top-1,000 filter** before LR. Applied to C0 (V6a) and to V1 (V6b; equal treatment
+  of the best graph model by mean CV, V1 = 0.550 vs V2 0.543, V3 0.509).
+  - Mechanism: fewer noise dimensions for n ≪ p.
+  - Expectation: ≈ C0; possibly worse, because a univariate filter is unstable at n ≈ 200 (Varma & Simon
+    2006 warn about selection-induced variance).
+  - Failure: Δ vs C0 ≤ 0.
+- **V7 random forest** (500 trees, √p features, balanced, 3 seeds) on per-batch-standardised genes.
+  - Expectation: below C0 (Hornung 2017; Kapoor & Narayanan 2023: LR is hard to beat).
+  - Failure: Δ vs C0 ≤ 0.
+- **V8 ensemble**: mean probability of C0 and V1, computed from the stored out-of-fold probabilities on
+  identical folds (no refit).
+  - Expectation: ≈ C0 (C0 and V1 are nearly identical models).
+  - Failure: Δ vs the better member ≤ 0 or < 0.03.
+
+## 2026-10-01 — PRE-REGISTRATION V9 (variant 8 of 12): cell-type composition classifier
+
+- Features: 10 BrainInABlender cell-type indices (Hagenauer et al. 2018 marker database, repo commit
+  015cc35). Each is the mean of in-fold per-batch-standardised marker genes; markers listed for > 1
+  primary cell type are dropped. Set sizes 11–285. Then the same inner-CV LR. Control: random gene sets
+  of identical sizes (3 seeds).
+- Purpose and mechanism: Ramaker 2017 and Hagenauer 2018 report neuron↓/astrocyte↑ in SCZ/BD and
+  composition as the main axis of variance. This measures how much of C0's above-chance signal a
+  10-number composition summary carries.
+- Expectation: SCZ and BD recover roughly half of C0's excess over chance; MDD and Task B ≈ chance.
+- As a candidate final model it fails if Δ vs C0 ≤ 0 (expected). The informative quantity is
+  (V9 − chance)/(C0 − chance) per task, reported regardless.
+
+## 2026-10-01 — RESULTS V6, V7, V8
+
+| Task | C0 | V6a filter+LR | V6b filter+STRING | V7 RF (seed SD) | V8 ensemble |
+|---|---|---|---|---|---|
+| SCZ | 0.649 | 0.668 ± 0.072 | 0.669 ± 0.065 | 0.680 ± 0.056 (0.018) | 0.650 |
+| BD | 0.547 | 0.561 | 0.568 | 0.520 (0.050) | 0.539 |
+| MDD | 0.574 | 0.592 | 0.576 | 0.543 (0.049) | 0.569 |
+| Task B | 0.445 | 0.467 | 0.464 | 0.480 (0.038) | 0.445 |
+| mean | 0.554 | **0.572** | 0.569 | 0.556 | 0.551 |
+
+Nadeau–Bengio, corrected p (uncorrected):
+- V6a vs C0: +0.019 (0.37; 0.021), +0.014 (0.60), +0.018 (0.67), +0.023 (0.47; 0.058).
+- V6b vs V1: +0.020 (0.28), +0.025 (0.30), +0.011 (0.75), +0.022 (0.55).
+- V7 vs C0: +0.032 (0.25; 0.004), −0.027 (0.58), −0.031 (0.41), +0.035 (0.26; 0.005).
+- V8 vs C0: +0.001, −0.008, −0.006, −0.000.
+
+Verdicts:
+- **V6: no gain beyond noise** (all |Δ| < 0.03, none significant under correction). Not a strict
+  pre-registered "failure" (Δ > 0), but it does not hold across folds.
+- **V7: FAILED** (Δ ≤ 0 on BD and MDD; the SCZ and Task B gains are not significant).
+- **V8: FAILED.**
+- Graph inside the filtered model (V6b − V6a): −0.000 / +0.007 / −0.016 / −0.003, again ≈ 0.
+
+Running variant count: **8 / 12** (V5, V1, V2, V3, V6, V7, V8; V9 pre-registered and queued).
+(Note: an old shell "wait" helper was killed by its time limit; it ran no computation.)
+
+## 2026-10-01 — RESULT V9 (cell-type composition) and FINAL SELECTION (frozen before the test set is opened)
+
+**V9** (10 BrainInABlender indices; CV macro-F1; Δ vs C0 corr p; Δ vs random sets corr p; fraction of C0's excess
+over chance recovered):
+- SCZ 0.630 (−0.019, 0.60; +0.043, 0.14; **0.88**)
+- BD 0.498 (−0.049; +0.050; 0.19)
+- MDD 0.505 (−0.069, 0.085; +0.009; 0.18)
+- Task B 0.390 (−0.055; +0.032; 0.51)
+- **V9 FAILED** as a model.
+- Finding: ten composition numbers carry about 88% of the detectable SCZ signal and about half of Task B's.
+  This is consistent with neuron/glia shifts (Ramaker 2017; Hagenauer 2018), which could be disease biology,
+  medication, agonal state or dissection; these data cannot separate them.
+
+**Final variant count: 8 / 12** (V5, V1, V2, V3, V6, V7, V8, V9; V4 not triggered). Table:
+`results/variants.json`.
+
+**Selection (PLAN §9 rule; `results/final_selection.json`):**
+- Eligible pool excludes V5 (composition leakage) and C1 (control).
+- **Best model = V6b** (in-fold ANOVA top-1,000 → STRING smoothing α = 0.5 → inner-CV L2-LR). Mean CV
+  0.569; the best non-baseline (V6b 0.569 > V8 0.550 ≈ V1 0.550 > V2 0.543 > V3 0.509 > V9 0.506).
+- **Best simple baseline = V6a** (in-fold ANOVA top-1,000 → inner-CV L2-LR). Mean CV 0.572 (> V7 0.556 >
+  C0 0.554).
+- BBC-CV (bias-corrected estimate of the selected configuration; 5 repeats × 200 bootstraps): 0.571 mean
+  (SCZ 0.679, BD 0.558, MDD 0.580, B 0.469). Selection optimism is negligible because candidates are nearly
+  equal.
+
+**Frozen test protocol (declared now, before any test feature is read):**
+1. Per task: train on all primary dev donors of the task (affected excluded); test on the task's
+   primary test donors. Per-batch standardisation uses training statistics of the same batch. The
+   filter and inner-CV C (seed 0) are fitted on training only. One fit per configuration per task.
+2. Configurations evaluated: **V6b (best model), V6a (best simple baseline)**, and **C1 study-only as a
+   reference control** (untuned; needed to judge "beats study composition" on test).
+3. Reported per task: macro-F1, MCC, AUC, per-class precision and recall, confusion matrix, with
+   percentile bootstrap 95% CIs (2,000 resamples of test donors), test chance levels (uniform, prior,
+   majority) and per-class test n.
+4. Pre-declared sub-analysis from the **same** predictions (no refit): metrics restricted to test donors
+   in batches that contain every class of the task (the C9 issue).
+5. V6b − V6a paired bootstrap difference on test (graph effect), with 95% CI.
+No second attempt, whatever the numbers.

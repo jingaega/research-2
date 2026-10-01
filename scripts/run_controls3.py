@@ -17,42 +17,44 @@ pd.set_option("display.width", 250)
 
 # ------------------------------------------------------------- C4(i)
 X, meta = load_dev()
-smap = pd.read_csv(DATA / "sample_donor_map.tsv", sep="\t", dtype=str, keep_default_na=False)
-genes = list(X.columns)
-dev_ok = meta[~meta.affected & meta.dx.isin(["SCZ", "CTL"]) & meta.cohort.isin(TASKS["A_SCZ_vs_CTL"]["cohorts"])]
-s = smap[smap.donor_id.isin(dev_ok.index) & ~smap.region.isin(["HPC"])].copy()
-arrays = {}
-for f in glob.glob(str(DATA / "expr" / "*.pkl")):
-    g = pd.read_pickle(f); name = pathlib.Path(f).stem
-    for c in g.columns:
-        if c in set(s.gsm): arrays[c] = (g[c].reindex(genes).values, name)
-s = s[s.gsm.isin(arrays)]
-s["batch"] = [arrays[g][1] + "|" + r for g, r in zip(s.gsm, s.region)]
-s = s[s.groupby("batch").gsm.transform("size") >= 10]          # need enough arrays per batch for standardisation
-XA = np.stack([arrays[g][0] for g in s.gsm]); assert not np.isnan(XA).any()
-s["dx_d"] = dev_ok.loc[s.donor_id, "dx"].values; s["grp"] = dev_ok.loc[s.donor_id, "split_group"].values
-print("C4(i) arrays:", len(s), "donors:", s.donor_id.nunique(), "batches:", s.batch.nunique())
-y = s.dx_d.values; strat = y + "|" + s.batch.values
-out = {}
-for scheme in ["sample_split_LEAK", "donor_grouped"]:
-    f1s, aucs = [], []
-    for r in range(5):
-        spl = StratifiedKFold(5, shuffle=True, random_state=r).split(XA, strat) if scheme.startswith("sample") else \
-              StratifiedGroupKFold(5, shuffle=True, random_state=r).split(XA, strat, s.grp)
-        for tr, te in spl:
-            Xtr, Xte = batch_std(XA[tr], s.batch.values[tr], XA[te], s.batch.values[te])
-            cl, P, _ = fit_predict("lr", Xtr, y[tr], Xte, s.grp.values[tr], r)
-            m = metrics(y[te], cl[P.argmax(1)], P, cl); f1s.append(m["macro_f1"]); aucs.append(m["auc"])
-            if scheme.startswith("sample"):
-                shared = len(set(s.donor_id.values[tr]) & set(s.donor_id.values[te]))
-                out.setdefault("donors_shared_train_test_per_fold", []).append(shared)
-    out[scheme] = {"macro_f1_mean": float(np.mean(f1s)), "macro_f1_fold_sd": float(np.std(f1s, ddof=1)), "auc_mean": float(np.mean(aucs)), "per_fold": f1s}
-    print("C4(i)", scheme, {k: v for k, v in out[scheme].items() if k != "per_fold"})
-from evalstats import nadeau_bengio
-out["nadeau_bengio_sample_minus_grouped"] = nadeau_bengio(np.array(out["sample_split_LEAK"]["per_fold"]) - np.array(out["donor_grouped"]["per_fold"]), 0.8 * len(s), 0.2 * len(s))
-out["note"] = "per-fold pairing is by index only (different splits); the NB p is indicative. n_arrays=%d, n_donors=%d" % (len(s), s.donor_id.nunique())
-out["n_arrays"] = int(len(s)); out["n_donors"] = int(s.donor_id.nunique()); out["arrays_per_donor"] = s.groupby("donor_id").size().value_counts().sort_index().to_dict()
-write_json(out, RES / "summary" / "C4a_sample_vs_donor_split.json")
+RUN_C4 = not (RES / 'summary' / 'C4a_sample_vs_donor_split.json').exists()
+if RUN_C4:
+    smap = pd.read_csv(DATA / "sample_donor_map.tsv", sep="\t", dtype=str, keep_default_na=False)
+    genes = list(X.columns)
+    dev_ok = meta[~meta.affected & meta.dx.isin(["SCZ", "CTL"]) & meta.cohort.isin(TASKS["A_SCZ_vs_CTL"]["cohorts"])]
+    s = smap[smap.donor_id.isin(dev_ok.index) & ~smap.region.isin(["HPC"])].copy()
+    arrays = {}
+    for f in glob.glob(str(DATA / "expr" / "*.pkl")):
+        g = pd.read_pickle(f); name = pathlib.Path(f).stem
+        for c in g.columns:
+            if c in set(s.gsm): arrays[c] = (g[c].reindex(genes).values, name)
+    s = s[s.gsm.isin(arrays)]
+    s["batch"] = [arrays[g][1] + "|" + r for g, r in zip(s.gsm, s.region)]
+    s = s[s.groupby("batch").gsm.transform("size") >= 10]          # need enough arrays per batch for standardisation
+    XA = np.stack([arrays[g][0] for g in s.gsm]); assert not np.isnan(XA).any()
+    s["dx_d"] = dev_ok.loc[s.donor_id, "dx"].values; s["grp"] = dev_ok.loc[s.donor_id, "split_group"].values
+    print("C4(i) arrays:", len(s), "donors:", s.donor_id.nunique(), "batches:", s.batch.nunique())
+    y = s.dx_d.values; strat = y + "|" + s.batch.values
+    out = {}
+    for scheme in ["sample_split_LEAK", "donor_grouped"]:
+        f1s, aucs = [], []
+        for r in range(5):
+            spl = StratifiedKFold(5, shuffle=True, random_state=r).split(XA, strat) if scheme.startswith("sample") else \
+                  StratifiedGroupKFold(5, shuffle=True, random_state=r).split(XA, strat, s.grp)
+            for tr, te in spl:
+                Xtr, Xte = batch_std(XA[tr], s.batch.values[tr], XA[te], s.batch.values[te])
+                cl, P, _ = fit_predict("lr", Xtr, y[tr], Xte, s.grp.values[tr], r)
+                m = metrics(y[te], cl[P.argmax(1)], P, cl); f1s.append(m["macro_f1"]); aucs.append(m["auc"])
+                if scheme.startswith("sample"):
+                    shared = len(set(s.donor_id.values[tr]) & set(s.donor_id.values[te]))
+                    out.setdefault("donors_shared_train_test_per_fold", []).append(shared)
+        out[scheme] = {"macro_f1_mean": float(np.mean(f1s)), "macro_f1_fold_sd": float(np.std(f1s, ddof=1)), "auc_mean": float(np.mean(aucs)), "per_fold": f1s}
+        print("C4(i)", scheme, {k: v for k, v in out[scheme].items() if k != "per_fold"})
+    from evalstats import nadeau_bengio
+    out["nadeau_bengio_sample_minus_grouped"] = nadeau_bengio(np.array(out["sample_split_LEAK"]["per_fold"]) - np.array(out["donor_grouped"]["per_fold"]), 0.8 * len(s), 0.2 * len(s))
+    out["note"] = "per-fold pairing is by index only (different splits); the NB p is indicative. n_arrays=%d, n_donors=%d" % (len(s), s.donor_id.nunique())
+    out["n_arrays"] = int(len(s)); out["n_donors"] = int(s.donor_id.nunique()); out["arrays_per_donor"] = s.groupby("donor_id").size().value_counts().sort_index().to_dict()
+    write_json(out, RES / "summary" / "C4a_sample_vs_donor_split.json")
 
 # ------------------------------------------------------------- C6
 spec = {"model": "lr", "adjust": "bstd"}
@@ -64,7 +66,7 @@ for t in TASK_ORDER:
     Xa, ma = task_data(t, population="all")
     aff = ma[ma.affected]
     base = cv_summary("C6_all_eligible", t)["macro_f1_mean"]; prim = cv_summary("C0_baseline_LR", t)["macro_f1_mean"]
-    c6[t] = {"n_affected_in_task": int(len(aff)), "affected_composition": aff.groupby(["dx", "cohort"]).size().rename(lambda x: "|".join(x)).to_dict(),
+    c6[t] = {"n_affected_in_task": int(len(aff)), "affected_composition": {f"{d}|{c}": int(n) for (d, c), n in aff.groupby(["dx", "cohort"]).size().items()},
              "all_eligible": base, "minus_affected(primary)": prim, "random_drops": []}
     if len(aff) == 0: continue
     for k in range(20):

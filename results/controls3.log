@@ -1,0 +1,34 @@
+C4(i) arrays: 530 donors: 262 batches: 11
+C4(i) sample_split_LEAK {'macro_f1_mean': 0.7111907995654676, 'macro_f1_fold_sd': 0.04465487276595062, 'auc_mean': 0.7850280941461611}
+C4(i) donor_grouped {'macro_f1_mean': 0.7018478167451608, 'macro_f1_fold_sd': 0.0631129444633443, 'auc_mean': 0.7674338365427082}
+C6 all eligible
+           task     cv_macroF1  seed_sd  cv_MCC  cv_AUC  chance_uniform                                                                                          LOSO_macroF1
+0  A_SCZ_vs_CTL  0.636 ± 0.068      0.0   0.278   0.709           0.494  {'CharingCross': 0.631, 'Pittsburgh': 0.745, 'Pritzker': 0.526, 'Stanley': 0.535, 'Victoria': 0.679}
+1   A_BD_vs_CTL  0.546 ± 0.099      0.0   0.100   0.573           0.486                                            {'Pittsburgh': 0.647, 'Pritzker': 0.493, 'Stanley': 0.466}
+2  A_MDD_vs_CTL  0.530 ± 0.068      0.0   0.084   0.563           0.490                                            {'Pittsburgh': 0.476, 'Pritzker': 0.433, 'Stanley': 0.416}
+3  B_multiclass  0.457 ± 0.072      0.0   0.211   0.673           0.333                                            {'Pittsburgh': 0.501, 'Pritzker': 0.358, 'Stanley': 0.272}
+C6 A_SCZ_vs_CTL {'n_affected_in_task': 4, 'affected_composition': {('C|T|L', 'P|i|t|t|s|b|u|r|g|h'): 1, ('C|T|L', 'S|t|a|n|l|e|y'): 1, ('C|T|L', 'V|i|c|t|o|r|i|a'): 1, ('S|C|Z', 'V|i|c|t|o|r|i|a'): 1}, 'all_eligible': 0.635940485730994, 'minus_affected(primary)': 0.6488774202843786, 'random_drop_mean': 0.6375449569499752, 'random_drop_sd': 0.010041357411280141, 'delta_minus_affected': 0.012936934553384516, 'delta_random_mean': 0.0016044712189811072, 'frac_random_drops_with_delta_ge_affected': 0.15}
+C6 A_BD_vs_CTL {'n_affected_in_task': 4, 'affected_composition': {('B|D', 'P|r|i|t|z|k|e|r'): 1, ('B|D', 'S|t|a|n|l|e|y'): 1, ('C|T|L', 'P|i|t|t|s|b|u|r|g|h'): 1, ('C|T|L', 'S|t|a|n|l|e|y'): 1}, 'all_eligible': 0.5461515539762078, 'minus_affected(primary)': 0.5469982497330248, 'random_drop_mean': 0.5366586019196906, 'random_drop_sd': 0.013496100415801479, 'delta_minus_affected': 0.0008466957568169509, 'delta_random_mean': -0.009492952056517234, 'frac_random_drops_with_delta_ge_affected': 0.25}
+C6 A_MDD_vs_CTL {'n_affected_in_task': 2, 'affected_composition': {('C|T|L', 'P|i|t|t|s|b|u|r|g|h'): 1, ('C|T|L', 'S|t|a|n|l|e|y'): 1}, 'all_eligible': 0.529863148370615, 'minus_affected(primary)': 0.5742465003061055, 'random_drop_mean': 0.552548849184445, 'random_drop_sd': 0.01339299676919075, 'delta_minus_affected': 0.04438335193549048, 'delta_random_mean': 0.022685700813830034, 'frac_random_drops_with_delta_ge_affected': 0.05}
+C6 B_multiclass {'n_affected_in_task': 2, 'affected_composition': {('B|D', 'P|r|i|t|z|k|e|r'): 1, ('B|D', 'S|t|a|n|l|e|y'): 1}, 'all_eligible': 0.4571655012659375, 'minus_affected(primary)': 0.4446196176685555, 'random_drop_mean': 0.46152942044025363, 'random_drop_sd': 0.014893727082469324, 'delta_minus_affected': -0.012545883597382013, 'delta_random_mean': 0.004363919174316111, 'frac_random_drops_with_delta_ge_affected': 0.85}
+Traceback (most recent call last):
+  File "/home/user/research-2/scripts/run_controls3.py", line 83, in <module>
+    write_json(c6, RES / "summary" / "C6_sex_mismatch_sensitivity.json")
+  File "/home/user/research-2/scripts/common.py", line 25, in write_json
+    tmp = path.with_suffix(".tmp"); tmp.write_text(json.dumps(obj, indent=1, default=_default)); tmp.replace(path)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not tuple

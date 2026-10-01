@@ -1,0 +1,35 @@
+{
+ "rule": "PLAN \u00a79: best model = highest mean dev-CV macro-F1 over 4 tasks among eligible non-baseline configs; best simple baseline = best of {C0, V6a, V7}",
+ "best_model": {
+  "id": "V6b",
+  "config": "V6b_filter1000_STRING",
+  "mean_cv": 0.5692
+ },
+ "best_simple_baseline": {
+  "id": "V6a",
+  "config": "V6a_filter1000_LR",
+  "mean_cv": 0.572
+ },
+ "excluded": {
+  "V5": "composition leakage (C8)"
+ },
+ "bbc_cv_pool": [
+  "C0_baseline_LR",
+  "V1_string",
+  "V2_coexpr",
+  "V3_reactome",
+  "V6a_filter1000_LR",
+  "V6b_filter1000_STRING",
+  "V7_RF",
+  "V8_ensemble_C0_V1",
+  "V9_celltype"
+ ],
+ "bbc_cv_estimate_of_selected": {
+  "selected_mean": 0.5712951483040875,
+  "A_SCZ_vs_CTL": 0.6786734035012424,
+  "A_BD_vs_CTL": 0.5580774669130069,
+  "A_MDD_vs_CTL": 0.5796925665574315,
+  "B_multiclass": 0.4687371562446686
+ },
+ "note": "BBC-CV: bootstrap donors' pooled out-of-fold predictions per repeat, select the best config on the bootstrap sample, evaluate on out-of-bag donors (200 boots x 5 repeats)."
+}
